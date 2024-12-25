@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Delete,
   Get,
@@ -27,6 +28,8 @@ export class AppController {
     },
   ];
 
+  private idCounter = 3;
+
   constructor(private readonly appService: AppService) {}
 
   @Get()
@@ -48,12 +51,16 @@ export class AppController {
   }
 
   @Post()
-  postMovie() {
-    return {
-      id: 3,
-      name: '어벤져스',
-      character: ['아이언맨', '캡틴아메리카'],
+  postMovie(@Body('title') title: string) {
+    const movie: Movie = {
+      id: this.idCounter++,
+      title: title,
     };
+
+    this.movies.push(movie);
+
+    // 다른 건 몰라도 id값은 클라이언트에게 넘겨줘야 한다
+    return movie;
   }
 
   @Patch(':id')
