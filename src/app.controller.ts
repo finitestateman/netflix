@@ -29,18 +29,10 @@ export class AppController {
     return this.appService.getMovieById(+id);
   }
 
-  // @Post()
-  // postMovie(@Body('title') title: string) {
-  //   const movie: Movie = {
-  //     id: this.idCounter++,
-  //     title: title,
-  //   };
-
-  //   this.movies.push(movie);
-
-  //   // 다른 건 몰라도 id값은 클라이언트에게 넘겨줘야 한다
-  //   return movie;
-  // }
+  @Post()
+  postMovie(@Body('title') title: string) {
+    return this.appService.createMovie(title);
+  }
 
   // @Patch(':id')
   // patchMovie(@Param('id') id: string, @Body('title') title: string) {

@@ -40,4 +40,17 @@ export class AppService {
 
     return movie;
   }
+
+  createMovie(title: string) {
+    const movie: Movie = {
+      id: this.idCounter++,
+      title: title,
+    };
+
+    console.log();
+    this.movies.push(movie);
+
+    // 다른 건 몰라도 id값은 클라이언트에게 넘겨줘야 한다
+    return movie;
+  }
 }
