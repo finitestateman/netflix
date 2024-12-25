@@ -77,7 +77,16 @@ export class AppController {
   }
 
   @Delete(':id')
-  deleteMovie() {
-    return 3;
+  deleteMovie(@Param('id') id) {
+    const movieIndex = this.movies.findIndex((m) => m.id === +id);
+
+    if (movieIndex === -1) {
+      throw new NotFoundException('존재하지 않는 ID의 영화입니다!');
+    }
+
+    this.movies.splice(movieIndex, 1);
+
+    // 꼭 id를 반환해줄 필요는 없다(정의하기 나름)
+    return id;
   }
 }
