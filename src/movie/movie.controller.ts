@@ -29,13 +29,13 @@ export class MovieController {
   }
 
   @Post()
-  postMovie(@Body('title') title: string) {
-    return this.movieService.createMovie(title);
+  postMovie(@Body('title') title: string, @Body('genre') genre: string) {
+    return this.movieService.createMovie(title, genre);
   }
 
   @Patch(':id')
-  patchMovie(@Param('id') id: string, @Body('title') title: string) {
-    return this.movieService.updateMovie(+id, title);
+  patchMovie(@Param('id') id: string, @Body('title') title: string, @Body('genre') genre: string) {
+    return this.movieService.updateMovie(+id, title, genre);
   }
 
   @Delete(':id')
