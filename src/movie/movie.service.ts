@@ -1,4 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { CreateMovieDto } from './dto/create-movie.dto';
+import { UpdateMovieDto } from './dto/update-movie.dto';
 
 // export 해줘야 Controller에서 쓸 수 있다
 export interface Movie {
@@ -44,11 +46,10 @@ export class MovieService {
     return movie;
   }
 
-  createMovie(title: string, genre: string) {
+  createMovie(createMovieDto: CreateMovieDto) {
     const movie: Movie = {
       id: this.idCounter++,
-      title: title,
-      genre: genre,
+      ...createMovieDto,
     };
 
     this.movies.push(movie);
@@ -57,14 +58,14 @@ export class MovieService {
     return movie;
   }
 
-  updateMovie(id: number, title: string, genre: string) {
+  updateMovie(id: number, updateMovieDto: UpdateMovieDto) {
     const movie = this.movies.find((m) => m.id === +id);
 
     if (!movie) {
       throw new NotFoundException('존재하지 않는 ID의 영화입니다!');
     }
 
-    Object.assign(movie, { title, genre });
+    Object.assign(movie, updateMovieDto);
 
     return movie;
   }

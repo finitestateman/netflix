@@ -9,6 +9,8 @@ import {
   Query,
 } from '@nestjs/common';
 import { MovieService } from './movie.service';
+import { CreateMovieDto } from './dto/create-movie.dto';
+import { UpdateMovieDto } from './dto/update-movie.dto';
 
 /**
  * Controller: 요청 자체, query, body, param 등에 대한 것만 처리한다
@@ -29,13 +31,13 @@ export class MovieController {
   }
 
   @Post()
-  postMovie(@Body('title') title: string, @Body('genre') genre: string) {
-    return this.movieService.createMovie(title, genre);
+  postMovie(@Body() body: CreateMovieDto) {
+    return this.movieService.createMovie(body);
   }
 
   @Patch(':id')
-  patchMovie(@Param('id') id: string, @Body('title') title: string, @Body('genre') genre: string) {
-    return this.movieService.updateMovie(+id, title, genre);
+  patchMovie(@Param('id') id: string, @Body() body: UpdateMovieDto) {
+    return this.movieService.updateMovie(+id, body);
   }
 
   @Delete(':id')
