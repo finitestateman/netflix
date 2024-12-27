@@ -26,11 +26,43 @@ import {
   MinLength,
   NotContains,
   NotEquals,
+  registerDecorator,
+  Validate,
+  ValidationArguments,
+  ValidationOptions,
+  ValidatorConstraint,
+  ValidatorConstraintInterface,
 } from 'class-validator';
 
 enum MovieGenre {
   Fantasy = 'fantasy',
   Action = 'action',
+}
+
+// @ValidatorConstraint()
+@ValidatorConstraint({ async: true }) // async로 하여 비동기로 validation을 수행할 수 있다(네트워크, DB 등)
+class PasswordValidator implements ValidatorConstraintInterface {
+  validate(
+    value: any,
+    validationArguments?: ValidationArguments,
+  ): Promise<boolean> | boolean {
+    // 비밀번호 길이는 4-8
+    return value.length > 4 && value.length < 8;
+  }
+  defaultMessage?(validationArguments?: ValidationArguments): string {
+    return '비밀번호의 길이는 4-8자 여야합니다. 입력된 비밀번호: ($value)';
+  }
+}
+
+function IsPasswordValid(validationOptions?: ValidationOptions) {
+  return function (object: object, propertyName: string) {
+    registerDecorator({
+      target: object.constructor, // 문제가 발생할 객체에 대한 constructor
+      propertyName,
+      options: validationOptions,
+      validator: PasswordValidator,
+    });
+  };
 }
 
 export class UpdateMovieDto {
@@ -68,5 +100,9 @@ export class UpdateMovieDto {
   // @MinLength(5)
   // @IsUUID()
   // @IsLatLong()
+  // @Validate(PasswordValidator)
+  // @Validate(PasswordValidator, { message: '에러 메시지 오버라이드' })
+  // @IsPasswordValid()
+  // @IsPasswordValid({ message: '에러 메시지 오버라이드' })
   test: string;
 }
