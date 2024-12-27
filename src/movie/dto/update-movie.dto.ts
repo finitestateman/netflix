@@ -1,21 +1,30 @@
 import {
+  Contains,
   Equals,
+  IsAlphanumeric,
   IsArray,
   IsBoolean,
+  IsCreditCard,
   IsDate,
   IsDateString,
   IsDefined,
   IsDivisibleBy,
   IsEmpty,
   IsEnum,
+  IsHexColor,
   IsIn,
   IsInt,
+  IsLatLong,
   IsNotEmpty,
   IsNotIn,
   IsNumber,
   IsOptional,
+  IsUUID,
   Max,
+  MaxLength,
   Min,
+  MinLength,
+  NotContains,
   NotEquals,
 } from 'class-validator';
 
@@ -50,5 +59,14 @@ export class UpdateMovieDto {
   // @IsDateString() // 날짜 형식의 문자열
   // @IsDivisibleBy(5)
   // @Max(100) // @Min(50)
+  // @Contains('code factory')
+  // @NotContains('code factory')
+  // @IsAlphanumeric()
+  // @IsCreditCard()
+  // @IsHexColor()
+  // @MaxLength(10)
+  // @MinLength(5)
+  // @IsUUID()
+  // @IsLatLong()
   test: string;
 }
