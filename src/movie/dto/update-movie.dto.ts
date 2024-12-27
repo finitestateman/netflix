@@ -1,13 +1,25 @@
 import {
   Equals,
+  IsArray,
+  IsBoolean,
+  IsDate,
+  IsDateString,
   IsDefined,
   IsEmpty,
+  IsEnum,
   IsIn,
+  IsInt,
   IsNotEmpty,
   IsNotIn,
+  IsNumber,
   IsOptional,
   NotEquals,
 } from 'class-validator';
+
+enum MovieGenre {
+  Fantasy = 'fantasy',
+  Action = 'action',
+}
 
 export class UpdateMovieDto {
   @IsNotEmpty() // 값이 있을 때 빈 문자열이면 안 된다
@@ -26,5 +38,12 @@ export class UpdateMovieDto {
   // @IsNotEmpty() // IsDefined || ''
   // @IsIn(['action', 'fantasy'])
   // @IsNotIn(['romance'])
+  // @IsBoolean()
+  // @IsNumber()
+  // @IsInt()
+  // @IsArray()
+  // @IsEnum(MovieGenre)
+  // @IsDate() // 실제 날짜 객체여야 함
+  @IsDateString() // 날짜 형식의 문자열
   test: string;
 }
