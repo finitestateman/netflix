@@ -1,9 +1,22 @@
 import { Module } from '@nestjs/common';
 import { MovieModule } from './movie/movie.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   // 또다른 module을 import할 때
-  imports: [MovieModule],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'localhost',
+      port: 5555,
+      username: 'postgres',
+      password: 'postgres',
+      database: 'postgres',
+      entities: [],
+      synchronize: true,
+    }),
+    MovieModule,
+  ],
   // import를 하는 module에서 쓸 수 있게 하고 싶은 것들을 export에 적어준다
   exports: [],
   controllers: [],
