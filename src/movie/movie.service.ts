@@ -2,38 +2,33 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
 import { Movie } from './entity/movie.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository, UpdateResult } from 'typeorm';
 
 // export 해줘야 Controller에서 쓸 수 있다
 
 @Injectable()
 export class MovieService {
-  private movies: Movie[] = [];
-  private idCounter = 3;
-
-  constructor() {
-    const movie1 = new Movie();
-    movie1.id = 1;
-    movie1.title = '해리포터';
-    movie1.genre = 'fantasy';
-
-    const movie2 = new Movie();
-    movie2.id = 2;
-    movie2.title = '반지의제왕';
-    movie2.genre = 'action';
-
-    this.movies.push(movie1, movie2);
-  }
+  constructor(
+    @InjectRepository(Movie)
+    private readonly movieRepository: Repository<Movie>,
+  ) {}
 
   getManyMovies(title?: string) {
-    if (!title) {
-      return this.movies;
-    }
+    // 나중에 title 필터 기능 추가하기
+    return this.movieRepository.find();
 
-    return this.movies.filter((m) => m.title.startsWith(title));
+    // if (!title) {
+    //   return this.movies;
+    // }
+
+    // return this.movies.filter((m) => m.title.startsWith(title));
   }
 
-  getMovieById(id: number) {
-    const movie = this.movies.find((m) => m.id === +id);
+  async getMovieById(id: number) {
+    const movie = await this.movieRepository.findOne({
+      where: { id },
+    });
 
     if (!movie) {
       // 이렇게 하면 500 이기 때문에 404로 바꿔준다
@@ -44,41 +39,49 @@ export class MovieService {
     return movie;
   }
 
-  createMovie(createMovieDto: CreateMovieDto) {
-    const movie: Movie = {
-      id: this.idCounter++,
-      ...createMovieDto,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      version: 0,
-    };
-
-    this.movies.push(movie);
-
-    // 다른 건 몰라도 id값은 클라이언트에게 넘겨줘야 한다
-    return movie;
+  async createMovie(createMovieDto: CreateMovieDto) {
+    return await this.movieRepository.save(createMovieDto);
   }
 
-  updateMovie(id: number, updateMovieDto: UpdateMovieDto) {
-    const movie = this.movies.find((m) => m.id === +id);
+  async updateMovie(id: number, updateMovieDto: UpdateMovieDto) {
+    const movie = await this.movieRepository.findOne({
+      where: { id },
+    });
 
     if (!movie) {
       throw new NotFoundException('존재하지 않는 ID의 영화입니다!');
     }
 
-    Object.assign(movie, updateMovieDto);
+    const result = await this.movieRepository.update(id, updateMovieDto);
 
-    return movie;
+    if (result.affected === 0) {
+      // 원래는 try-catch로 추가적인 처리를 해야한다
+      // 또 사실 위에서 id 검사를 할 필요가 없고 여기서 처리하면 된다
+      throw new NotFoundException('아무 변경사항이 일어나지 않았습니다!');
+    }
+
+    // 업데이트된 영화 정보를 반환하기 위해 한번 더 조회
+    return await this.movieRepository.findOne({
+      where: { id },
+    });
   }
 
-  deleteMovie(id: number) {
-    const movieIndex = this.movies.findIndex((m) => m.id === +id);
+  async deleteMovie(id: number) {
+    const movie = await this.movieRepository.findOne({
+      where: { id },
+    });
 
-    if (movieIndex === -1) {
+    if (!movie) {
       throw new NotFoundException('존재하지 않는 ID의 영화입니다!');
     }
 
-    this.movies.splice(movieIndex, 1);
+    const result = await this.movieRepository.delete(id);
+
+    if (result.affected === 0) {
+      // 원래는 try-catch로 추가적인 처리를 해야한다
+      // 또 사실 위에서 id 검사를 할 필요가 없고 여기서 처리하면 된다
+      throw new NotFoundException('아무 변경사항이 일어나지 않았습니다!');
+    }
 
     // 꼭 id를 반환해줄 필요는 없다(정의하기 나름)
     return id;
