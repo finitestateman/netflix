@@ -18,7 +18,8 @@ export class BaseEntity {
 
 // @Exclude()
 @Entity()
-export class Movie {
+/* 상속 시 당연하지만 Entity Embedding과는 다르게 plain 하게 응답된다 */
+export class Movie extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -39,8 +40,8 @@ export class Movie {
       "version": 1
   }
    */
-  @Column(() => BaseEntity)
-  base: BaseEntity;
+  // @Column(() => BaseEntity)
+  // base: BaseEntity;
 
   // @Expose() // 메서드에 대해서도 적용할 수 있다
   // get custom() {
