@@ -1,5 +1,5 @@
 import { Exclude, Expose, Transform } from 'class-transformer';
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, VersionColumn } from 'typeorm';
+import { ChildEntity, Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, TableInheritance, UpdateDateColumn, VersionColumn } from 'typeorm';
 
 export class BaseEntity {
   @CreateDateColumn()
@@ -16,35 +16,43 @@ export class BaseEntity {
   // deletedAt: Date;
 }
 
-// @Exclude()
+// Single Table Inheritance: 공통되는 속성이 존재하는 Entity들을 한 테이블로 다룬다
+// Content: Movie || Series
+// Movie: runtime
+// Series: seriesCount
 @Entity()
-/* 상속 시 당연하지만 Entity Embedding과는 다르게 plain 하게 응답된다 */
-export class Movie extends BaseEntity {
+@TableInheritance({
+  column: {
+    type: 'varchar',
+    name: 'type',
+  },
+})
+export class Content extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
   title: string;
 
-  // @Expose() // class 단위에 Exclude를 사용한 경우 각 필드에 대해 Expose를 사용할 수 있다
-  // @Exclude()
-  // @Transform(({ value }) => value.toString().toUpperCase())
   @Column()
   genre: string;
+}
 
-  // 객체 임베딩 시 응답도 객체 형식으로 반환된다
-  /**
-    "base": {
-      "createdAt": "2024-12-29T15:26:48.811Z",
-      "updatedAt": "2024-12-29T15:26:48.811Z",
-      "version": 1
-  }
-   */
-  // @Column(() => BaseEntity)
-  // base: BaseEntity;
+// @Exclude()
+@ChildEntity()
+/* 상속 시 당연하지만 Entity Embedding과는 다르게 plain 하게 응답된다 */
+export class Movie extends Content {
+  @Column()
+  runtime: number;
 
   // @Expose() // 메서드에 대해서도 적용할 수 있다
   // get custom() {
   //   return `title: ${this.title}, genre: ${this.genre}`;
   // }
+}
+
+@ChildEntity()
+export class Series extends Content {
+  @Column()
+  seriesCount: number;
 }
