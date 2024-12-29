@@ -3,7 +3,7 @@ import { MovieModule } from './movie/movie.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as Joi from 'joi';
-import { Content, Movie, Series } from './movie/entity/movie.entity';
+import { Movie } from './movie/entity/movie.entity';
 
 @Module({
   // 또다른 module을 import할 때
@@ -28,7 +28,7 @@ import { Content, Movie, Series } from './movie/entity/movie.entity';
         username: configService.get<string>('DB_USERNAME'),
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_DATABASE'),
-        entities: [Movie, Series, Content],
+        entities: [Movie],
         synchronize: true,
       }),
       inject: [ConfigService],
