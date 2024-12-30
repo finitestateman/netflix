@@ -102,6 +102,7 @@ export class MovieService {
   async deleteMovie(id: number) {
     const movie = await this.movieRepository.findOne({
       where: { id },
+      relations: ['detail'],
     });
 
     if (!movie) {
@@ -113,7 +114,17 @@ export class MovieService {
     if (result.affected === 0) {
       // 원래는 try-catch로 추가적인 처리를 해야한다
       // 또 사실 위에서 id 검사를 할 필요가 없고 여기서 처리하면 된다
-      throw new NotFoundException('아무 변경사항이 일어나지 않았습니다!');
+      throw new NotFoundException('영화 정보가 삭제되지 않았습니다!');
+    }
+
+    const detailResult = await this.movieDetailRepository.delete(
+      movie.detail.id,
+    );
+
+    if (detailResult.affected === 0) {
+      // 원래는 try-catch로 추가적인 처리를 해야한다
+      // 또 사실 위에서 id 검사를 할 필요가 없고 여기서 처리하면 된다
+      throw new NotFoundException('영화 상세 정보가 삭제되지 않았습니다!');
     }
 
     // 꼭 id를 반환해줄 필요는 없다(정의하기 나름)
