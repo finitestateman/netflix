@@ -37,6 +37,7 @@ export class MovieService {
   async getMovieById(id: number) {
     const movie = await this.movieRepository.findOne({
       where: { id },
+      relations: ['detail'],
     });
 
     if (!movie) {
