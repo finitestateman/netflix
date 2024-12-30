@@ -64,23 +64,38 @@ export class MovieService {
   async updateMovie(id: number, updateMovieDto: UpdateMovieDto) {
     const movie = await this.movieRepository.findOne({
       where: { id },
+      relations: ['detail'],
     });
 
     if (!movie) {
       throw new NotFoundException('존재하지 않는 ID의 영화입니다!');
     }
 
-    const result = await this.movieRepository.update(id, updateMovieDto);
+    const { description, ...partialMovieDto } = updateMovieDto;
+
+    const result = await this.movieRepository.update(id, partialMovieDto);
 
     if (result.affected === 0) {
       // 원래는 try-catch로 추가적인 처리를 해야한다
       // 또 사실 위에서 id 검사를 할 필요가 없고 여기서 처리하면 된다
-      throw new NotFoundException('아무 변경사항이 일어나지 않았습니다!');
+      throw new NotFoundException('영화 정보가 갱신되지 않았습니다!');
+    }
+
+    const detailResult = await this.movieDetailRepository.update(
+      movie.detail.id,
+      { description },
+    );
+
+    if (detailResult.affected === 0) {
+      // 원래는 try-catch로 추가적인 처리를 해야한다
+      // 또 사실 위에서 id 검사를 할 필요가 없고 여기서 처리하면 된다
+      throw new NotFoundException('영화 상세 정보가 갱신되지 않았습니다!');
     }
 
     // 업데이트된 영화 정보를 반환하기 위해 한번 더 조회
     return await this.movieRepository.findOne({
       where: { id },
+      relations: ['detail'],
     });
   }
 
