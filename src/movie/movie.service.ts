@@ -4,6 +4,7 @@ import { UpdateMovieDto } from './dto/update-movie.dto';
 import { Movie } from './entity/movie.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Like, Repository, UpdateResult } from 'typeorm';
+import { MovieDetail } from './entity/movie-detail.entity';
 
 // export 해줘야 Controller에서 쓸 수 있다
 
@@ -12,6 +13,8 @@ export class MovieService {
   constructor(
     @InjectRepository(Movie)
     private readonly movieRepository: Repository<Movie>,
+    @InjectRepository(MovieDetail)
+    private readonly movieDetailRepository: Repository<MovieDetail>,
   ) {}
 
   async getManyMovies(title?: string) {
@@ -46,7 +49,15 @@ export class MovieService {
   }
 
   async createMovie(createMovieDto: CreateMovieDto) {
-    return await this.movieRepository.save(createMovieDto);
+    const movieDetail = await this.movieDetailRepository.save({
+      description: createMovieDto.description,
+    });
+
+    return await this.movieRepository.save({
+      title: createMovieDto.title,
+      genre: createMovieDto.genre,
+      detail: movieDetail,
+    });
   }
 
   async updateMovie(id: number, updateMovieDto: UpdateMovieDto) {
