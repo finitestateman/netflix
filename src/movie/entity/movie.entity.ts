@@ -1,7 +1,8 @@
 import { Exclude, Expose, Transform } from 'class-transformer';
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn, VersionColumn } from 'typeorm';
-import { BaseTable } from './base-table.entity';
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn, VersionColumn } from 'typeorm';
+import { BaseTable } from '../../common/entity/base-table.entity';
 import { MovieDetail } from './movie-detail.entity';
+import { Director } from 'src/director/entity/director.entity';
 
 // ManyToOne: Director -> 감독은  여러개의 영화를 제작 가능
 // OneToOne: MovieDetail -> 영화는 하나의 상세 내용을 가짐
@@ -44,4 +45,7 @@ export class Movie extends BaseTable {
   // get custom() {
   //   return `title: ${this.title}, genre: ${this.genre}`;
   // }
+
+  @ManyToOne(() => Director, (director) => director.id)
+  director: Director;
 }
