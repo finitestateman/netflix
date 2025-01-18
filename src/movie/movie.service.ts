@@ -32,7 +32,7 @@ export class MovieService {
   async findAll(title?: string) {
     if (!title) {
       return [
-        await this.movieRepository.find({ relations: ['director'] }),
+        await this.movieRepository.find({ relations: ['director', 'genres'] }),
         await this.movieRepository.count(),
       ];
     }
@@ -41,7 +41,7 @@ export class MovieService {
       where: {
         title: Like(`%${title}%`),
       },
-      relations: ['director'],
+      relations: ['director', 'genres'],
     });
 
     // return this.movies.filter((m) => m.title.startsWith(title));
@@ -50,7 +50,7 @@ export class MovieService {
   async findOne(id: number) {
     const movie = await this.movieRepository.findOne({
       where: { id },
-      relations: ['detail', 'director'],
+      relations: ['detail', 'director', 'genres'],
     });
 
     if (!movie) {
@@ -102,7 +102,7 @@ export class MovieService {
       throw new NotFoundException('존재하지 않는 ID의 영화입니다!');
     }
 
-    const { description, directorId, ...partialMovieDto } = updateMovieDto;
+    const { description, directorId, genreIds, ...partialMovieDto } = updateMovieDto;
 
     let director: Director;
 
@@ -138,10 +138,32 @@ export class MovieService {
       throw new NotFoundException('영화 상세 정보가 갱신되지 않았습니다!');
     }
 
+    let genres: Genre[];
+
+    if (genreIds) {
+      genres = await this.genreRepository.find({
+        where: { id: In(genreIds) },
+      });
+
+      if (genres.length !== updateMovieDto.genreIds.length) {
+        throw new NotFoundException(
+          `존재하지 않는 장르가 있습니다! 존재하는 id: [${genres.map((genre) => genre.id).join(',')}]`,
+        );
+      }
+    }
+
     // 업데이트된 영화 정보를 반환하기 위해 한번 더 조회
-    return await this.movieRepository.findOne({
+    const updatedMovie = await this.movieRepository.findOne({
       where: { id },
       relations: ['detail', 'director'],
+    });
+
+    updatedMovie.genres = genres;
+    await this.movieRepository.save(updatedMovie);
+
+    return this.movieRepository.findOne({
+      where: { id },
+      relations: ['detail', 'director', 'genres'],
     });
   }
 
