@@ -46,6 +46,8 @@ export class Movie extends BaseTable {
   //   return `title: ${this.title}, genre: ${this.genre}`;
   // }
 
-  @ManyToOne(() => Director, (director) => director.id)
+  @ManyToOne(() => Director, (director) => director.id, {
+    cascade: true,
+  })
   director: Director;
 }

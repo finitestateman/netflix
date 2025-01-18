@@ -17,4 +17,7 @@ export class CreateMovieDto {
     description: string;
   };
    */
+
+  @IsNotEmpty()
+  directorId: number;
 }

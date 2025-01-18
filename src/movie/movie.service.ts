@@ -5,7 +5,7 @@ import { Movie } from './entity/movie.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Like, Repository, UpdateResult } from 'typeorm';
 import { MovieDetail } from './entity/movie-detail.entity';
-import { DirectorService } from 'src/director/director.service';
+import { Director } from 'src/director/entity/director.entity';
 
 // export 해줘야 Controller에서 쓸 수 있다
 
@@ -21,7 +21,9 @@ export class MovieService {
     하지만 강의에선 같은 레이어(service 레이어)끼리는 의존관계를 버리고 repository를 주입받도록 한다
     장단점에 대해선 생각해보기
      */
-    private readonly directorService: DirectorService,
+    // private readonly directorService: DirectorService,
+    @InjectRepository(Director)
+    private readonly directorRepository: Repository<Director>,
   ) {}
 
   async findAll(title?: string) {
@@ -57,12 +59,22 @@ export class MovieService {
   }
 
   async create(createMovieDto: CreateMovieDto) {
+    const director = await this.directorRepository.findOne({
+      where: { id: createMovieDto.directorId },
+    });
+
+    if (!director) {
+      throw new NotFoundException('존재하지 않는 ID의 감독입니다!');
+    }
+
     return await this.movieRepository.save({
       title: createMovieDto.title,
       genre: createMovieDto.genre,
       detail: {
         description: createMovieDto.description,
       },
+      // entity에 class로써 정의되었으므로 directorId가 아니라 director 자체를 전달한다(실제 movie테이블에는 directorId가 저장된다)
+      director,
     });
   }
 
@@ -76,9 +88,24 @@ export class MovieService {
       throw new NotFoundException('존재하지 않는 ID의 영화입니다!');
     }
 
-    const { description, ...partialMovieDto } = updateMovieDto;
+    const { description, directorId, ...partialMovieDto } = updateMovieDto;
 
-    const result = await this.movieRepository.update(id, partialMovieDto);
+    let director: Director;
+
+    if (directorId) {
+      director = await this.directorRepository.findOne({
+        where: { id: directorId },
+      });
+
+      if (!director) {
+        throw new NotFoundException('존재하지 않는 ID의 감독입니다');
+      }
+    }
+
+    const result = await this.movieRepository.update(id, {
+      ...partialMovieDto,
+      director,
+    });
 
     if (result.affected === 0) {
       // 원래는 try-catch로 추가적인 처리를 해야한다
@@ -100,7 +127,7 @@ export class MovieService {
     // 업데이트된 영화 정보를 반환하기 위해 한번 더 조회
     return await this.movieRepository.findOne({
       where: { id },
-      relations: ['detail'],
+      relations: ['detail', 'director'],
     });
   }
 
