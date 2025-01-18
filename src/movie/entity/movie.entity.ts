@@ -15,7 +15,9 @@ export class Movie extends BaseTable {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({
+    unique: true,
+  })
   title: string;
 
   // @Expose() // class 단위에 Exclude를 사용한 경우 각 필드에 대해 Expose를 사용할 수 있다
@@ -26,6 +28,7 @@ export class Movie extends BaseTable {
 
   @OneToOne(() => MovieDetail, (movieDetail) => movieDetail.id, {
     cascade: true, // movie에 대한 작업이 detail에 영향을 미치게 한다
+    nullable: false,
   })
   @JoinColumn()
   detail: MovieDetail;
@@ -48,6 +51,7 @@ export class Movie extends BaseTable {
 
   @ManyToOne(() => Director, (director) => director.id, {
     cascade: true,
+    nullable: false,
   })
   director: Director;
 }

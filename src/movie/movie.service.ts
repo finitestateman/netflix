@@ -29,7 +29,7 @@ export class MovieService {
   async findAll(title?: string) {
     if (!title) {
       return [
-        await this.movieRepository.find(),
+        await this.movieRepository.find({ relations: ['director'] }),
         await this.movieRepository.count(),
       ];
     }
@@ -38,6 +38,7 @@ export class MovieService {
       where: {
         title: Like(`%${title}%`),
       },
+      relations: ['director'],
     });
 
     // return this.movies.filter((m) => m.title.startsWith(title));
@@ -46,7 +47,7 @@ export class MovieService {
   async findOne(id: number) {
     const movie = await this.movieRepository.findOne({
       where: { id },
-      relations: ['detail'],
+      relations: ['detail', 'director'],
     });
 
     if (!movie) {
