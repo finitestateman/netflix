@@ -5,6 +5,7 @@ import { Movie } from './entity/movie.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Like, Repository, UpdateResult } from 'typeorm';
 import { MovieDetail } from './entity/movie-detail.entity';
+import { DirectorService } from 'src/director/director.service';
 
 // export 해줘야 Controller에서 쓸 수 있다
 
@@ -15,6 +16,12 @@ export class MovieService {
     private readonly movieRepository: Repository<Movie>,
     @InjectRepository(MovieDetail)
     private readonly movieDetailRepository: Repository<MovieDetail>,
+    /*
+    한 서비스에서 다른 서비스를 자체를 주입 받아서 사용해도 된다.
+    하지만 강의에선 같은 레이어(service 레이어)끼리는 의존관계를 버리고 repository를 주입받도록 한다
+    장단점에 대해선 생각해보기
+     */
+    private readonly directorService: DirectorService,
   ) {}
 
   async findAll(title?: string) {
