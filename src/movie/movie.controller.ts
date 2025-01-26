@@ -33,14 +33,27 @@ export class MovieController {
     return this.movieService.findOne(+id);
   }
 
+  // @Post()
+  // create(@Body() body: CreateMovieDto) {
+  //   return this.movieService.create(body);
+  // }
+
   @Post()
-  create(@Body() body: CreateMovieDto) {
-    return this.movieService.create(body);
+  createUsingQueryBuilder(@Body() body: CreateMovieDto) {
+    return this.movieService.createUsingQueryBuilder(body);
   }
 
+  // @Patch(':id')
+  // update(@Param('id') id: string, @Body() body: UpdateMovieDto) {
+  //   return this.movieService.update(+id, body);
+  // }
+
   @Patch(':id')
-  update(@Param('id') id: string, @Body() body: UpdateMovieDto) {
-    return this.movieService.update(+id, body);
+  updateUsingQueryBuilder(
+    @Param('id') id: string,
+    @Body() body: UpdateMovieDto,
+  ) {
+    return this.movieService.updateUsingQueryBuilder(+id, body);
   }
 
   @Delete(':id')
