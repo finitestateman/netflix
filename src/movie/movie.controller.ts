@@ -9,6 +9,10 @@ import {
   Query,
   UseInterceptors,
   ClassSerializerInterceptor,
+  ParseIntPipe,
+  HttpStatus,
+  BadRequestException,
+  ParseArrayPipe,
 } from '@nestjs/common';
 import { MovieService } from './movie.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
@@ -28,9 +32,32 @@ export class MovieController {
     return this.movieService.findAll(title);
   }
 
+  @Get('array')
+  findAllArrayPipe(
+    @Query('id', new ParseArrayPipe({ items: Number, separator: ',' }))
+    id: number[],
+  ) {
+    return id;
+  }
+
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.movieService.findOne(+id);
+  // findOne(@Param('id', ParseIntPipe) id: number) {
+  findOne(
+    @Param(
+      'id',
+      new ParseIntPipe({
+        exceptionFactory: (error) => {
+          throw new BadRequestException({
+            message: 'id is not a number',
+            error,
+            statusCode: HttpStatus.BAD_REQUEST,
+          });
+        },
+      }),
+    )
+    id: number,
+  ) {
+    return this.movieService.findOne(id);
   }
 
   // @Post()
