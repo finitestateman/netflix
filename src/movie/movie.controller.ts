@@ -77,14 +77,14 @@ export class MovieController {
 
   @Patch(':id')
   updateUsingQueryBuilder(
-    @Param('id') id: string,
+    @Param('id', ParseIntPipe) id: number,
     @Body() body: UpdateMovieDto,
   ) {
-    return this.movieService.updateUsingQueryBuilder(+id, body);
+    return this.movieService.updateUsingQueryBuilder(id, body);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.movieService.remove(+id);
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.movieService.remove(id);
   }
 }
