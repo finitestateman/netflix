@@ -17,6 +17,7 @@ import {
 import { MovieService } from './movie.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
+import { MovieTitleValidationPipeGeneric } from './pipe/movie-title-validation.pipe';
 
 /**
  * Controller: 요청 자체, query, body, param 등에 대한 것만 처리한다
@@ -28,7 +29,18 @@ export class MovieController {
   constructor(private readonly movieService: MovieService) {}
 
   @Get()
-  findAll(@Query('title') title?: string) {
+  findAll(
+    @Query(
+      'title',
+      new MovieTitleValidationPipeGeneric<
+        string | string[] | undefined,
+        string
+      >({
+        allowEmpty: true,
+      }),
+    )
+    title?: string,
+  ) {
     return this.movieService.findAll(title);
   }
 
