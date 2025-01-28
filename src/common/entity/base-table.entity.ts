@@ -1,12 +1,12 @@
 import { CreateDateColumn, UpdateDateColumn, VersionColumn } from 'typeorm';
 
-export class BaseTable {
-  @CreateDateColumn()
-  createdAt: Date;
+export abstract class BaseTable {
+    @CreateDateColumn()
+    public createdAt: Date;
 
-  @UpdateDateColumn()
-  updatedAt: Date;
+    @UpdateDateColumn()
+    public updatedAt: Date;
 
-  @VersionColumn()
-  version: number;
+    @VersionColumn()
+    public version: number;
 }

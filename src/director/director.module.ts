@@ -5,9 +5,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Director } from './entity/director.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Director])],
-  controllers: [DirectorController],
-  providers: [DirectorService],
-  // exports: [DirectorService],
+    imports: [TypeOrmModule.forFeature([Director])],
+    controllers: [DirectorController],
+    providers: [DirectorService],
+    // exports: [DirectorService],
 })
 export class DirectorModule {}

@@ -1,38 +1,50 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, ClassSerializerInterceptor, ParseIntPipe } from '@nestjs/common';
+import {
+    Controller,
+    Get,
+    Post,
+    Body,
+    Patch,
+    Param,
+    Delete,
+    UseInterceptors,
+    ClassSerializerInterceptor,
+    ParseIntPipe,
+} from '@nestjs/common';
 import { DirectorService } from './director.service';
 import { CreateDirectorDto } from './dto/create-director.dto';
 import { UpdateDirectorDto } from './dto/update-director.dto';
+import { Director } from './entity/director.entity';
 
 @Controller('director')
 @UseInterceptors(ClassSerializerInterceptor)
 export class DirectorController {
-  constructor(private readonly directorService: DirectorService) {}
+    public constructor(private readonly directorService: DirectorService) {}
 
-  @Get()
-  findAll() {
-    return this.directorService.findAll();
-  }
+    @Get()
+    public findAll(): Promise<Director[]> {
+        return this.directorService.findAll();
+    }
 
-  @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.directorService.findOne(id);
-  }
+    @Get(':id')
+    public findOne(@Param('id', ParseIntPipe) id: number): Promise<Director> {
+        return this.directorService.findOne(id);
+    }
 
-  @Post()
-  create(@Body() createDirectorDto: CreateDirectorDto) {
-    return this.directorService.create(createDirectorDto);
-  }
+    @Post()
+    public create(@Body() createDirectorDto: CreateDirectorDto): Promise<Director> {
+        return this.directorService.create(createDirectorDto);
+    }
 
-  @Patch(':id')
-  update(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() updateDirectorDto: UpdateDirectorDto,
-  ) {
-    return this.directorService.update(id, updateDirectorDto);
-  }
+    @Patch(':id')
+    public update(
+        @Param('id', ParseIntPipe) id: number,
+        @Body() updateDirectorDto: UpdateDirectorDto,
+    ): Promise<Director> {
+        return this.directorService.update(id, updateDirectorDto);
+    }
 
-  @Delete(':id')
-  remove(@Param('id', ParseIntPipe) id: number) {
-    return this.directorService.remove(id);
-  }
+    @Delete(':id')
+    public remove(@Param('id', ParseIntPipe) id: number): Promise<number> {
+        return this.directorService.remove(id);
+    }
 }

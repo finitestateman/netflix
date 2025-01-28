@@ -8,8 +8,8 @@ import { Director } from 'src/director/entity/director.entity';
 import { Genre } from 'src/genre/entities/genre.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Movie, MovieDetail, Director, Genre])], // , DirectorModule],
-  controllers: [MovieController],
-  providers: [MovieService],
+    imports: [TypeOrmModule.forFeature([Movie, MovieDetail, Director, Genre])], // , DirectorModule],
+    controllers: [MovieController],
+    providers: [MovieService],
 })
 export class MovieModule {}

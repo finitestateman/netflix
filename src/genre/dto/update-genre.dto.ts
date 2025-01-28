@@ -1,8 +1,8 @@
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class UpdateGenreDto {
-  @IsNotEmpty()
-  @IsString()
-  @IsOptional()
-  name?: string;
+    @IsNotEmpty()
+    @IsString()
+    @IsOptional()
+    public name?: string;
 }
