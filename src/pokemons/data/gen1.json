@@ -1,0 +1,1361 @@
+[
+  {
+    "nationalNo": 1,
+    "name": "이상해씨",
+    "types": ["grass", "poison"],
+    "height": 2.3,
+    "weight": 15.2,
+    "species": "씨앗포켓몬",
+    "description": "태어나서부터 등에 있는 이상한 씨앗과 함께 자란다. 씨앗이 점점 크게 자란다."
+  },
+  {
+    "nationalNo": 2,
+    "name": "이상해풀",
+    "types": ["grass", "poison"],
+    "height": 3.3,
+    "weight": 28.7,
+    "species": "씨앗포켓몬",
+    "description": "등의 꽃봉오리에서 달콤한 향기가 난다. 꽃이 피기 직전이 되면 더욱 강해진다."
+  },
+  {
+    "nationalNo": 3,
+    "name": "이상해꽃",
+    "types": ["grass", "poison"],
+    "height": 6.7,
+    "weight": 220.5,
+    "species": "씨앗포켓몬",
+    "description": "꽃에서 영양이 가득한 꽃가루가 날린다. 햇빛이 강할수록 꽃가루가 많이 날린다."
+  },
+  {
+    "nationalNo": 4,
+    "name": "파이리",
+    "types": ["fire"],
+    "height": 2.0,
+    "weight": 18.7,
+    "species": "도롱뇽포켓몬",
+    "description": "꼬리의 불꽃은 생명의 등불이다. 건강할 때는 불꽃이 강하게 타오른다."
+  },
+  {
+    "nationalNo": 5,
+    "name": "리자드",
+    "types": ["fire"],
+    "height": 3.7,
+    "weight": 41.9,
+    "species": "화염포켓몬",
+    "description": "싸울 때는 꼬리를 휘둘러 상대를 쓰러뜨리고 예리한 발톱으로 찢어버린다."
+  },
+  {
+    "nationalNo": 6,
+    "name": "리자몽",
+    "types": ["fire", "flying"],
+    "height": 5.7,
+    "weight": 200.6,
+    "species": "화염포켓몬",
+    "description": "산 속에서 살며 강한 상대를 찾아다닌다. 꼬리의 불꽃으로 주위의 온도를 높인다."
+  },
+  {
+    "nationalNo": 7,
+    "name": "꼬부기",
+    "types": ["water"],
+    "height": 1.8,
+    "weight": 19.8,
+    "species": "꼬마거북포켓몬",
+    "description": "등껍질에 숨어 몸을 보호한다. 상대의 빈틈을 노려 물을 뿜어낸다."
+  },
+  {
+    "nationalNo": 8,
+    "name": "어니부기",
+    "types": ["water"],
+    "height": 3.3,
+    "weight": 49.6,
+    "species": "거북포켓몬",
+    "description": "긴 꼬리는 털로 덮여있어 파도타기를 할 때 방향을 바꾸는 데 도움이 된다."
+  },
+  {
+    "nationalNo": 9,
+    "name": "거북왕",
+    "types": ["water"],
+    "height": 5.3,
+    "weight": 188.5,
+    "species": "껍질포켓몬",
+    "description": "등껍질의 물대포로 정확하게 먼 거리의 표적을 맞출 수 있다."
+  },
+  {
+    "nationalNo": 10,
+    "name": "캐터피",
+    "types": ["bug"],
+    "height": 1.0,
+    "weight": 6.4,
+    "species": "애벌레포켓몬",
+    "description": "발톱이 달린 발로 나무를 잘 탄다. 잎사귀를 먹어 성장한다."
+  },
+  {
+    "nationalNo": 11,
+    "name": "단데기",
+    "types": ["bug"],
+    "height": 2.3,
+    "weight": 21.8,
+    "species": "번데기포켓몬",
+    "description": "단단한 껍질 속에서 내장이 녹아 진화를 준비한다. 껍질은 약간 따뜻하다."
+  },
+  {
+    "nationalNo": 12,
+    "name": "버터플",
+    "types": ["bug", "flying"],
+    "height": 3.7,
+    "weight": 70.5,
+    "species": "나비포켓몬",
+    "description": "꽃의 꿀을 좋아한다. 조금의 꿀이라도 남아있는 꽃을 레이더로 찾아낼 수 있다."
+  },
+  {
+    "nationalNo": 13,
+    "name": "뿔충이",
+    "types": ["bug", "poison"],
+    "height": 1.0,
+    "weight": 7.1,
+    "species": "송충이포켓몬",
+    "description": "머리의 작은 독침으로 자신을 보호한다. 숲에서 잎사귀를 먹으며 산다."
+  },
+  {
+    "nationalNo": 14,
+    "name": "딱충이",
+    "types": ["bug", "poison"],
+    "height": 2.0,
+    "weight": 22.0,
+    "species": "번데기포켓몬",
+    "description": "껍질은 강철처럼 단단하다. 움직이지 않는 것은 내부에서 진화를 준비하고 있기 때문이다."
+  },
+  {
+    "nationalNo": 15,
+    "name": "독침붕",
+    "types": ["bug", "poison"],
+    "height": 3.3,
+    "weight": 65.0,
+    "species": "독벌포켓몬",
+    "description": "날카로운 독침을 가지고 있다. 둥지를 지키기 위해 무리를 지어 공격한다."
+  },
+  {
+    "nationalNo": 16,
+    "name": "구구",
+    "types": ["normal", "flying"],
+    "height": 1.0,
+    "weight": 4.0,
+    "species": "아기새포켓몬",
+    "description": "방향감각이 매우 뛰어나다. 멀리 떨어진 곳에서도 자신의 둥지로 돌아올 수 있다."
+  },
+  {
+    "nationalNo": 17,
+    "name": "피죤",
+    "types": ["normal", "flying"],
+    "height": 3.7,
+    "weight": 66.1,
+    "species": "새포켓몬",
+    "description": "넓은 영역을 자신의 영토로 삼는다. 영토를 침범한 적은 용서없이 퇴치한다."
+  },
+  {
+    "nationalNo": 18,
+    "name": "피죤투",
+    "types": ["normal", "flying"],
+    "height": 4.9,
+    "weight": 87.1,
+    "species": "새포켓몬",
+    "description": "아름다운 깃털을 가지고 있다. 많은 트레이너들이 장식용으로 키우고 있다."
+  },
+  {
+    "nationalNo": 19,
+    "name": "꼬렛",
+    "types": ["normal"],
+    "height": 1.0,
+    "weight": 7.7,
+    "species": "쥐포켓몬",
+    "description": "어디에서나 볼 수 있다. 작은 몸집으로 재빠르게 도망다닌다."
+  },
+  {
+    "nationalNo": 20,
+    "name": "레트라",
+    "types": ["normal"],
+    "height": 2.3,
+    "weight": 40.8,
+    "species": "쥐포켓몬",
+    "description": "날카로운 이빨로 단단한 물건도 쉽게 갉아먹을 수 있다. 집 안에서도 종종 볼 수 있다."
+  },
+  {
+    "nationalNo": 21,
+    "name": "깨비참",
+    "types": ["normal", "flying"],
+    "height": 1.0,
+    "weight": 4.4,
+    "species": "참새포켓몬",
+    "description": "작은 벌레를 잡아먹고 산다. 날카로운 부리로 재빠르게 쪼아댄다."
+  },
+  {
+    "nationalNo": 22,
+    "name": "깨비드릴조",
+    "types": ["normal", "flying"],
+    "height": 3.9,
+    "weight": 83.8,
+    "species": "부리포켓몬",
+    "description": "긴 부리로 나무를 쪼아 구멍을 뚫는다. 그 구멍 속에 둥지를 만든다."
+  },
+  {
+    "nationalNo": 23,
+    "name": "아보",
+    "types": ["poison"],
+    "height": 6.7,
+    "weight": 15.2,
+    "species": "뱀포켓몬",
+    "description": "혀를 날름거리며 주위의 냄새를 감지한다. 풀숲에 숨어 먹이를 기다린다."
+  },
+  {
+    "nationalNo": 24,
+    "name": "아보크",
+    "types": ["poison"],
+    "height": 11.5,
+    "weight": 143.3,
+    "species": "코브라포켓몬",
+    "description": "목의 무늬로 상대를 위협한다. 무늬가 클수록 강한 개체로 여겨진다."
+  },
+  {
+    "nationalNo": 25,
+    "name": "피카츄",
+    "types": ["electric"],
+    "height": 1.4,
+    "weight": 13.2,
+    "species": "쥐포켓몬",
+    "description": "전기주머니에 강력한 전기를 모아둔다. 위험을 느끼면 방전한다."
+  },
+  {
+    "nationalNo": 26,
+    "name": "라이츄",
+    "types": ["electric"],
+    "height": 2.7,
+    "weight": 66.1,
+    "species": "쥐포켓몬",
+    "description": "긴 꼬리는 접지의 역할을 한다. 번개를 맞아도 전기가 땅으로 흘러간다."
+  },
+  {
+    "nationalNo": 27,
+    "name": "모래두지",
+    "types": ["ground"],
+    "height": 2.0,
+    "weight": 26.5,
+    "species": "쥐포켓몬",
+    "description": "모래 속에서 살며 등의 가시로 자신을 보호한다. 물이 없는 사막에서도 잘 산다."
+  },
+  {
+    "nationalNo": 28,
+    "name": "고지",
+    "types": ["ground"],
+    "height": 3.3,
+    "weight": 65.0,
+    "species": "쥐포켓몬",
+    "description": "날카로운 발톱으로 바위를 부수고 터널을 판다. 가시로 적을 공격한다."
+  },
+  {
+    "nationalNo": 29,
+    "name": "니드런♀",
+    "types": ["poison"],
+    "height": 1.4,
+    "weight": 15.4,
+    "species": "독침포켓몬",
+    "description": "작지만 독이 있어 위험하다. 뿔의 크기가 클수록 독이 강하다."
+  },
+  {
+    "nationalNo": 30,
+    "name": "니드리나",
+    "types": ["poison"],
+    "height": 2.7,
+    "weight": 44.1,
+    "species": "독침포켓몬",
+    "description": "알을 지키기 위해 공격적이 된다. 작은 뿔의 독도 매우 강력하다."
+  },
+  {
+    "nationalNo": 31,
+    "name": "니드퀸",
+    "types": ["poison", "ground"],
+    "height": 4.3,
+    "weight": 132.3,
+    "species": "드릴포켓몬",
+    "description": "단단한 비늘과 바늘로 몸을 보호한다. 적을 공격할 때는 전신의 가시를 세운다."
+  },
+  {
+    "nationalNo": 32,
+    "name": "니드런♂",
+    "types": ["poison"],
+    "height": 1.7,
+    "weight": 19.8,
+    "species": "독침포켓몬",
+    "description": "귀가 크고 청각이 발달했다. 작은 소리도 놓치지 않고 듣는다."
+  },
+  {
+    "nationalNo": 33,
+    "name": "니드리노",
+    "types": ["poison"],
+    "height": 2.9,
+    "weight": 43.0,
+    "species": "독침포켓몬",
+    "description": "공격적인 성격이다. 단단한 뿔로 상대를 들이받아 공격한다."
+  },
+  {
+    "nationalNo": 34,
+    "name": "니드킹",
+    "types": ["poison", "ground"],
+    "height": 4.6,
+    "weight": 136.7,
+    "species": "드릴포켓몬",
+    "description": "강력한 꼬리로 상대를 때려눕히고 단단한 뿔로 마무리한다."
+  },
+  {
+    "nationalNo": 35,
+    "name": "삐삐",
+    "types": ["fairy"],
+    "height": 2.0,
+    "weight": 16.5,
+    "species": "요정포켓몬",
+    "description": "달빛을 받으면 몸이 둥글게 부풀어 오른다. 달이 뜬 밤에 춤을 춘다."
+  },
+  {
+    "nationalNo": 36,
+    "name": "픽시",
+    "types": ["fairy"],
+    "height": 4.3,
+    "weight": 88.2,
+    "species": "요정포켓몬",
+    "description": "달빛을 피하고 어두운 동굴에서 산다. 귀가 매우 발달했다."
+  },
+  {
+    "nationalNo": 37,
+    "name": "식스테일",
+    "types": ["fire"],
+    "height": 2.0,
+    "weight": 21.8,
+    "species": "여우포켓몬",
+    "description": "태어날 때는 꼬리가 하나뿐이지만 성장하면서 꼬리가 갈라진다."
+  },
+  {
+    "nationalNo": 38,
+    "name": "나인테일",
+    "types": ["fire"],
+    "height": 3.7,
+    "weight": 43.9,
+    "species": "여우포켓몬",
+    "description": "아름다운 9개의 꼬리를 가지고 있다. 1000년을 산다고 전해진다."
+  },
+  {
+    "nationalNo": 39,
+    "name": "푸린",
+    "types": ["normal", "fairy"],
+    "height": 1.7,
+    "weight": 12.1,
+    "species": "풍선포켓몬",
+    "description": "자장가를 부르면 상대를 잠들게 한다. 노래를 부를 때는 자신도 졸린다."
+  },
+  {
+    "nationalNo": 40,
+    "name": "푸크린",
+    "types": ["normal", "fairy"],
+    "height": 3.3,
+    "weight": 26.5,
+    "species": "풍선포켓몬",
+    "description": "몸을 부풀려서 크게 보이게 한다. 노래 소리는 더욱 커졌다."
+  },
+  {
+    "nationalNo": 41,
+    "name": "주뱃",
+    "types": ["poison", "flying"],
+    "height": 2.6,
+    "weight": 16.5,
+    "species": "박쥐포켓몬",
+    "description": "날개를 접으면 쥐처럼 보인다. 초음파로 어둠 속에서도 자유롭게 날아다닌다."
+  },
+  {
+    "nationalNo": 42,
+    "name": "골뱃",
+    "types": ["poison", "flying"],
+    "height": 5.2,
+    "weight": 121.3,
+    "species": "박쥐포켓몬",
+    "description": "날카로운 이빨로 상대의 피를 빨아먹는다. 밤이 되면 활동을 시작한다."
+  },
+  {
+    "nationalNo": 43,
+    "name": "뚜벅쵸",
+    "types": ["grass", "poison"],
+    "height": 1.7,
+    "weight": 11.9,
+    "species": "잡초포켓몬",
+    "description": "낮에는 햇빛을 받으며 움직이지 않는다. 밤이 되면 걸어다닌다."
+  },
+  {
+    "nationalNo": 44,
+    "name": "냄새꼬",
+    "types": ["grass", "poison"],
+    "height": 2.6,
+    "weight": 18.7,
+    "species": "잡초포켓몬",
+    "description": "두 개의 꽃에서 다른 냄새가 난다. 지독한 악취로 적을 물리친다."
+  },
+  {
+    "nationalNo": 45,
+    "name": "라플레시아",
+    "types": ["grass", "poison"],
+    "height": 3.9,
+    "weight": 41.0,
+    "species": "꽃포켓몬",
+    "description": "세계에서 가장 큰 꽃잎을 가졌다. 걸어다니며 먹이를 찾는다."
+  },
+  {
+    "nationalNo": 46,
+    "name": "파라스",
+    "types": ["bug", "grass"],
+    "height": 1.0,
+    "weight": 11.9,
+    "species": "버섯포켓몬",
+    "description": "등의 버섯에서 영양분을 빨아들인다. 버섯은 파라스와 함께 자란다."
+  },
+  {
+    "nationalNo": 47,
+    "name": "파라섹트",
+    "types": ["bug", "grass"],
+    "height": 3.3,
+    "weight": 65.0,
+    "species": "버섯포켓몬",
+    "description": "큰 버섯에서 포자를 뿌린다. 숙주를 조종하는 버섯의 힘이 매우 강하다."
+  },
+  {
+    "nationalNo": 48,
+    "name": "콘팡",
+    "types": ["bug", "poison"],
+    "height": 3.3,
+    "weight": 66.1,
+    "species": "벌레포켓몬",
+    "description": "큰 눈으로 주위를 살핀다. 밤이 되면 활발하게 활동한다."
+  },
+  {
+    "nationalNo": 49,
+    "name": "도나리",
+    "types": ["bug", "poison"],
+    "height": 4.9,
+    "weight": 125.7,
+    "species": "독나방포켓몬",
+    "description": "날개의 인분이 바람을 타고 날리면 맹독이 퍼진다. 접근하면 위험하다."
+  },
+  {
+    "nationalNo": 50,
+    "name": "디그다",
+    "types": ["ground"],
+    "height": 0.8,
+    "weight": 1.8,
+    "species": "두더지포켓몬",
+    "description": "지하 1m 깊이에 산다. 뿌리를 먹기 위해 땅속을 파고 다닌다."
+  },
+  {
+    "nationalNo": 51,
+    "name": "닥트리오",
+    "types": ["ground"],
+    "height": 2.3,
+    "weight": 73.4,
+    "species": "두더지포켓몬",
+    "description": "세 마리가 협력하여 땅을 판다. 단단한 땅도 파고들 수 있다."
+  },
+  {
+    "nationalNo": 52,
+    "name": "나옹",
+    "types": ["normal"],
+    "height": 1.4,
+    "weight": 9.3,
+    "species": "야옹이포켓몬",
+    "description": "동전을 좋아한다. 밤이 되면 주인이 잠든 사이 동전을 모으러 나간다."
+  },
+  {
+    "nationalNo": 53,
+    "name": "페르시온",
+    "types": ["normal"],
+    "height": 3.3,
+    "weight": 70.5,
+    "species": "샴고양이포켓몬",
+    "description": "우아한 걸음걸이로 조용히 다가간다. 꼬리로 먹이의 움직임을 재본다."
+  },
+  {
+    "nationalNo": 54,
+    "name": "고라파덕",
+    "types": ["water"],
+    "height": 2.6,
+    "weight": 43.2,
+    "species": "오리포켓몬",
+    "description": "항상 두통에 시달린다. 능력을 사용하면 두통이 심해진다."
+  },
+  {
+    "nationalNo": 55,
+    "name": "골덕",
+    "types": ["water"],
+    "height": 5.6,
+    "weight": 168.7,
+    "species": "오리포켓몬",
+    "description": "초능력으로 비를 내리게 한다. 비가 오는 날 힘이 더욱 강해진다."
+  },
+  {
+    "nationalNo": 56,
+    "name": "망키",
+    "types": ["fighting"],
+    "height": 1.7,
+    "weight": 61.7,
+    "species": "원숭이포켓몬",
+    "description": "나무 위에서 생활한다. 화가 나면 무작정 상대를 때린다."
+  },
+  {
+    "nationalNo": 57,
+    "name": "성원숭",
+    "types": ["fighting"],
+    "height": 3.3,
+    "weight": 70.5,
+    "species": "원숭이포켓몬",
+    "description": "분노를 참지 못하고 날뛴다. 화가 풀릴 때까지 멈추지 않는다."
+  },
+  {
+    "nationalNo": 58,
+    "name": "가디",
+    "types": ["fire"],
+    "height": 2.3,
+    "weight": 41.9,
+    "species": "강아지포켓몬",
+    "description": "충성심이 강하다. 트레이너를 보호하기 위해 적에게 달려든다."
+  },
+  {
+    "nationalNo": 59,
+    "name": "윈디",
+    "types": ["fire"],
+    "height": 6.2,
+    "weight": 341.7,
+    "species": "전설포켓몬",
+    "description": "아름다운 모습으로 많은 트레이너들의 사랑을 받고 있다."
+  },
+  {
+    "nationalNo": 60,
+    "name": "발챙이",
+    "types": ["water"],
+    "height": 2.0,
+    "weight": 27.3,
+    "species": "올챙이포켓몬",
+    "description": "꼬리를 휘저어 헤엄친다. 새로 생긴 다리는 아직 약하다."
+  },
+  {
+    "nationalNo": 61,
+    "name": "슈륙챙이",
+    "types": ["water"],
+    "height": 3.3,
+    "weight": 44.1,
+    "species": "올챙이포켓몬",
+    "description": "강한 다리로 땅에서도 잘 걷는다. 새로 생긴 팔로 물건을 잡을 수 있다."
+  },
+  {
+    "nationalNo": 62,
+    "name": "강챙이",
+    "types": ["water", "fighting"],
+    "height": 4.3,
+    "weight": 119.1,
+    "species": "올챙이포켓몬",
+    "description": "근육질의 몸으로 파도를 가르며 헤엄친다. 육상에서도 빠르게 달린다."
+  },
+  {
+    "nationalNo": 63,
+    "name": "캐이시",
+    "types": ["psychic"],
+    "height": 2.9,
+    "weight": 43.0,
+    "species": "초능력포켓몬",
+    "description": "강력한 초능력을 가졌다. 잠을 자는 동안에도 능력이 발동한다."
+  },
+  {
+    "nationalNo": 64,
+    "name": "윤겔라",
+    "types": ["psychic"],
+    "height": 4.3,
+    "weight": 124.7,
+    "species": "초능력포켓몬",
+    "description": "숟가락을 구부리는 초능력을 가졌다. 머리가 아플 때는 능력이 강해진다."
+  },
+  {
+    "nationalNo": 65,
+    "name": "후딘",
+    "types": ["psychic"],
+    "height": 4.9,
+    "weight": 171.3,
+    "species": "초능력포켓몬",
+    "description": "IQ가 5000이라고 한다. 모든 것을 기억하며 평생 잊지 않는다."
+  },
+  {
+    "nationalNo": 66,
+    "name": "알통몬",
+    "types": ["fighting"],
+    "height": 2.6,
+    "weight": 41.9,
+    "species": "괴력포켓몬",
+    "description": "근육을 단련하는 것을 좋아한다. 작은 체구로도 무거운 것을 들 수 있다."
+  },
+  {
+    "nationalNo": 67,
+    "name": "근육몬",
+    "types": ["fighting"],
+    "height": 4.9,
+    "weight": 155.4,
+    "species": "괴력포켓몬",
+    "description": "하루 종일 운동을 한다. 쉬는 시간에도 근력 운동을 멈추지 않는다."
+  },
+  {
+    "nationalNo": 68,
+    "name": "괴력몬",
+    "types": ["fighting"],
+    "height": 5.2,
+    "weight": 286.6,
+    "species": "괴력포켓몬",
+    "description": "팔의 근육이 단단해서 강철도 구길 수 있다. 한 손가락으로도 상대를 던진다."
+  },
+  {
+    "nationalNo": 69,
+    "name": "모다피",
+    "types": ["grass", "poison"],
+    "height": 2.3,
+    "weight": 8.8,
+    "species": "파리지옥포켓몬",
+    "description": "덩굴로 먹이를 잡아 소화액으로 녹인다. 날씨가 좋은 날 활발히 움직인다."
+  },
+  {
+    "nationalNo": 70,
+    "name": "우츠동",
+    "types": ["grass", "poison"],
+    "height": 3.3,
+    "weight": 14.1,
+    "species": "파리지옥포켓몬",
+    "description": "산성의 체액으로 먹이를 녹인다. 비가 오는 날에는 움직임이 둔해진다."
+  },
+  {
+    "nationalNo": 71,
+    "name": "우츠보트",
+    "types": ["grass", "poison"],
+    "height": 5.6,
+    "weight": 34.2,
+    "species": "파리지옥포켓몬",
+    "description": "큰 입으로 통째로 삼킨다. 소화하는 데 하루가 걸린다."
+  },
+  {
+    "nationalNo": 72,
+    "name": "왕눈해",
+    "types": ["water", "poison"],
+    "height": 2.9,
+    "weight": 100.0,
+    "species": "해파리포켓몬",
+    "description": "촉수로 독을 주입한다. 오래된 개체일수록 촉수가 길어진다."
+  },
+  {
+    "nationalNo": 73,
+    "name": "독파리",
+    "types": ["water", "poison"],
+    "height": 5.2,
+    "weight": 121.3,
+    "species": "해파리포켓몬",
+    "description": "87개의 촉수로 먹이를 잡는다. 쏘인 자리는 2~3일 동안 아프다."
+  },
+  {
+    "nationalNo": 74,
+    "name": "꼬마돌",
+    "types": ["rock", "ground"],
+    "height": 1.4,
+    "weight": 44.1,
+    "species": "돌포켓몬",
+    "description": "산길이나 들판에서 발견된다. 지나가는 사람에게 걸림돌이 된다."
+  },
+  {
+    "nationalNo": 75,
+    "name": "데구리",
+    "types": ["rock", "ground"],
+    "height": 3.3,
+    "weight": 231.5,
+    "species": "돌포켓몬",
+    "description": "산을 따라 구르며 이동한다. 모서리에 부딪혀도 멀쩡하다."
+  },
+  {
+    "nationalNo": 76,
+    "name": "딱구리",
+    "types": ["rock", "ground"],
+    "height": 4.3,
+    "weight": 661.4,
+    "species": "메가톤포켓몬",
+    "description": "산을 한 바퀴 구르면서 바위를 부순다. 어떤 장애물도 부수고 나아간다."
+  },
+  {
+    "nationalNo": 77,
+    "name": "포니타",
+    "types": ["fire"],
+    "height": 3.3,
+    "weight": 66.1,
+    "species": "불의말포켓몬",
+    "description": "태어날 때부터 갈기가 불타오른다. 달리면서 불꽃을 휘날린다."
+  },
+  {
+    "nationalNo": 78,
+    "name": "날쌩마",
+    "types": ["fire"],
+    "height": 5.6,
+    "weight": 209.4,
+    "species": "불의말포켓몬",
+    "description": "시속 240km로 달린다. 갈기의 불꽃이 바람을 가르며 나부낀다."
+  },
+  {
+    "nationalNo": 79,
+    "name": "야돈",
+    "types": ["water", "psychic"],
+    "height": 3.9,
+    "weight": 79.4,
+    "species": "둔한포켓몬",
+    "description": "꼬리의 끝부분이 달콤해서 낚시할 때 미끼로 사용한다고 한다."
+  },
+  {
+    "nationalNo": 80,
+    "name": "야도란",
+    "types": ["water", "psychic"],
+    "height": 5.2,
+    "weight": 173.1,
+    "species": "껍질포켓몬",
+    "description": "셀러의 독에 야돈의 꼬리가 재생되지 않아 진화했다고 한다."
+  },
+  {
+    "nationalNo": 81,
+    "name": "코일",
+    "types": ["electric", "steel"],
+    "height": 1.0,
+    "weight": 13.2,
+    "species": "자석포켓몬",
+    "description": "전자파를 먹고 산다. 정전이 일어나면 많이 모여든다."
+  },
+  {
+    "nationalNo": 82,
+    "name": "레어코일",
+    "types": ["electric", "steel"],
+    "height": 3.3,
+    "weight": 132.3,
+    "species": "자석포켓몬",
+    "description": "강력한 자력으로 적의 움직임을 봉쇄한다. 공중에 떠서 이동한다."
+  },
+  {
+    "nationalNo": 83,
+    "name": "파오리",
+    "types": ["normal", "flying"],
+    "height": 2.6,
+    "weight": 33.1,
+    "species": "천둥오리포켓몬",
+    "description": "파를 들고 다니며 무기처럼 사용한다. 파를 잃어버리면 불안해한다."
+  },
+  {
+    "nationalNo": 84,
+    "name": "두두",
+    "types": ["normal", "flying"],
+    "height": 4.3,
+    "weight": 86.4,
+    "species": "쌍둥이새포켓몬",
+    "description": "한 몸에 머리가 둘이다. 잠을 잘 때는 교대로 경계를 선다."
+  },
+  {
+    "nationalNo": 85,
+    "name": "두트리오",
+    "types": ["normal", "flying"],
+    "height": 5.9,
+    "weight": 188.2,
+    "species": "세쌍둥이포켓몬",
+    "description": "세 마리가 한 몸이다. 싸울 때는 세 개의 부리로 쪼아댄다."
+  },
+  {
+    "nationalNo": 86,
+    "name": "쥬쥬",
+    "types": ["water"],
+    "height": 3.3,
+    "weight": 198.4,
+    "species": "바다사자포켓몬",
+    "description": "하얀 털이 매우 두껍다. 차가운 바다에서도 체온을 유지할 수 있다."
+  },
+  {
+    "nationalNo": 87,
+    "name": "쥬레곤",
+    "types": ["water", "ice"],
+    "height": 5.6,
+    "weight": 264.6,
+    "species": "바다사자포켓몬",
+    "description": "빙산을 부수며 헤엄친다. 단단한 뿔로 얼음을 깨고 먹이를 찾는다."
+  },
+  {
+    "nationalNo": 88,
+    "name": "질퍽이",
+    "types": ["poison"],
+    "height": 2.9,
+    "weight": 66.1,
+    "species": "진흙포켓몬",
+    "description": "오염된 진흙에서 발견된다. 더러운 것을 먹고 더 더러워진다."
+  },
+  {
+    "nationalNo": 89,
+    "name": "질뻐기",
+    "types": ["poison"],
+    "height": 3.9,
+    "weight": 66.1,
+    "species": "진흙포켓몬",
+    "description": "독성이 강한 진흙으로 덮여있다. 만지면 피부병에 걸릴 수 있다."
+  },
+  {
+    "nationalNo": 90,
+    "name": "셀러",
+    "types": ["water"],
+    "height": 1.0,
+    "weight": 8.8,
+    "species": "조개포켓몬",
+    "description": "단단한 껍데기로 몸을 보호한다. 껍데기가 열리면 재빨리 도망간다."
+  },
+  {
+    "nationalNo": 91,
+    "name": "파르셀",
+    "types": ["water", "ice"],
+    "height": 4.9,
+    "weight": 292.6,
+    "species": "조개포켓몬",
+    "description": "날카로운 가시가 달린 큰 껍데기는 공격과 방어에 모두 유용하다."
+  },
+  {
+    "nationalNo": 92,
+    "name": "고오스",
+    "types": ["ghost", "poison"],
+    "height": 4.3,
+    "weight": 0.2,
+    "species": "가스포켓몬",
+    "description": "가스로 된 몸체로 어떤 틈이라도 통과할 수 있다. 밤에 활동한다."
+  },
+  {
+    "nationalNo": 93,
+    "name": "고우스트",
+    "types": ["ghost", "poison"],
+    "height": 5.2,
+    "weight": 0.2,
+    "species": "가스포켓몬",
+    "description": "혀로 핥으면 생명력을 빼앗긴다. 어둠 속에 숨어 먹이를 기다린다."
+  },
+  {
+    "nationalNo": 94,
+    "name": "팬텀",
+    "types": ["ghost", "poison"],
+    "height": 4.9,
+    "weight": 89.3,
+    "species": "그림자포켓몬",
+    "description": "저주의 에너지 덩어리다. 밤에 그림자처럼 나타나 사람들을 놀라게 한다."
+  },
+  {
+    "nationalNo": 95,
+    "name": "롱스톤",
+    "types": ["rock", "ground"],
+    "height": 28.2,
+    "weight": 463.0,
+    "species": "바위뱀포켓몬",
+    "description": "땅속 깊이 구멍을 파고 산다. 지하 1km까지 파고들어 간다."
+  },
+  {
+    "nationalNo": 96,
+    "name": "슬리프",
+    "types": ["psychic"],
+    "height": 3.3,
+    "weight": 71.4,
+    "species": "최면포켓몬",
+    "description": "초능력으로 상대를 잠들게 한다. 잠든 상대의 꿈을 먹고 산다."
+  },
+  {
+    "nationalNo": 97,
+    "name": "슬리퍼",
+    "types": ["psychic"],
+    "height": 5.2,
+    "weight": 166.7,
+    "species": "최면포켓몬",
+    "description": "최면술을 부리는 능력이 매우 강하다. 최면에 걸린 상대는 2~3일간 잠든다."
+  },
+  {
+    "nationalNo": 98,
+    "name": "크랩",
+    "types": ["water"],
+    "height": 1.4,
+    "weight": 14.3,
+    "species": "게포켓몬",
+    "description": "집게로 먹이를 잡는다. 옆으로 걸어다니며 모래사장을 돌아다닌다."
+  },
+  {
+    "nationalNo": 99,
+    "name": "킹크랩",
+    "types": ["water"],
+    "height": 4.3,
+    "weight": 132.3,
+    "species": "집게포켓몬",
+    "description": "큰 집게는 4000마력의 힘을 낼 수 있다. 하지만 너무 무거워서 잘 못 쓴다."
+  },
+  {
+    "nationalNo": 100,
+    "name": "찌리리공",
+    "types": ["electric"],
+    "height": 1.7,
+    "weight": 22.9,
+    "species": "볼포켓몬",
+    "description": "약한 전류로 몸을 띄운다. 폭발하면 주변의 전자기기가 고장 난다."
+  },
+  {
+    "nationalNo": 101,
+    "name": "붐볼",
+    "types": ["electric"],
+    "height": 3.9,
+    "weight": 146.8,
+    "species": "볼포켓몬",
+    "description": "전기를 모아 폭발한다. 자폭하면서 상대를 쓰러뜨린다."
+  },
+  {
+    "nationalNo": 102,
+    "name": "아라리",
+    "types": ["grass", "psychic"],
+    "height": 1.4,
+    "weight": 5.5,
+    "species": "알포켓몬",
+    "description": "알처럼 생긴 얼굴로 텔레파시를 보낸다. 숲에서 무리 지어 산다."
+  },
+  {
+    "nationalNo": 103,
+    "name": "나시",
+    "types": ["grass", "psychic"],
+    "height": 6.6,
+    "weight": 264.6,
+    "species": "야자수포켓몬",
+    "description": "머리의 야자열매를 하나씩 떨어뜨린다. 맞으면 머리가 아프다."
+  },
+  {
+    "nationalNo": 104,
+    "name": "탕구리",
+    "types": ["ground"],
+    "height": 1.4,
+    "weight": 14.3,
+    "species": "고독포켓몬",
+    "description": "어미의 뼈를 머리에 쓰고 다닌다. 뼈를 쓰고 있으면 강해진다."
+  },
+  {
+    "nationalNo": 105,
+    "name": "텅구리",
+    "types": ["ground"],
+    "height": 3.3,
+    "weight": 99.2,
+    "species": "고독포켓몬",
+    "description": "어미의 해골을 쓰고 있다. 해골을 쓰고 있어서 진짜 얼굴을 아무도 모른다."
+  },
+  {
+    "nationalNo": 106,
+    "name": "시라소몬",
+    "types": ["fighting"],
+    "height": 4.9,
+    "weight": 109.8,
+    "species": "킥포켓몬",
+    "description": "다리를 단련하여 강한 킥을 날린다. 한 번의 킥으로 콘크리트를 부순다."
+  },
+  {
+    "nationalNo": 107,
+    "name": "홍수몬",
+    "types": ["fighting"],
+    "height": 4.3,
+    "weight": 110.7,
+    "species": "펀치포켓몬",
+    "description": "회전하면서 펀치를 날린다. 1초에 수백 번의 펀치를 날릴 수 있다."
+  },
+  {
+    "nationalNo": 108,
+    "name": "내루미",
+    "types": ["normal"],
+    "height": 3.9,
+    "weight": 144.4,
+    "species": "핥기포켓몬",
+    "description": "긴 혀로 무엇이든 핥는다. 혀의 침으로 상대를 마비시킨다."
+  },
+  {
+    "nationalNo": 109,
+    "name": "또가스",
+    "types": ["poison"],
+    "height": 2.0,
+    "weight": 2.2,
+    "species": "독가스포켓몬",
+    "description": "쓰레기를 먹으면 새로운 독가스가 만들어진다. 밤에 하수구 근처에서 발견된다."
+  },
+  {
+    "nationalNo": 110,
+    "name": "또도가스",
+    "types": ["poison"],
+    "height": 3.9,
+    "weight": 20.9,
+    "species": "독가스포켓몬",
+    "description": "두 개의 몸에서 섞이는 독가스는 새로운 독가스를 만들어낸다."
+  },
+  {
+    "nationalNo": 111,
+    "name": "뿔카노",
+    "types": ["ground", "rock"],
+    "height": 3.3,
+    "weight": 253.5,
+    "species": "뿔포켓몬",
+    "description": "단단한 몸으로 바위를 부수고 길을 만든다. 한 달에 한 번 뿔이 자란다."
+  },
+  {
+    "nationalNo": 112,
+    "name": "코뿌리",
+    "types": ["ground", "rock"],
+    "height": 6.2,
+    "weight": 264.6,
+    "species": "드릴포켓몬",
+    "description": "뿔로 바위를 부수고 터널을 만든다. 한 번 돌진하면 멈출 수 없다."
+  },
+  {
+    "nationalNo": 113,
+    "name": "럭키",
+    "types": ["normal"],
+    "height": 3.6,
+    "weight": 76.3,
+    "species": "알포켓몬",
+    "description": "상냥한 성격으로 부상당한 포켓몬을 돌본다. 알을 먹으면 행복해진다."
+  },
+  {
+    "nationalNo": 114,
+    "name": "덩쿠리",
+    "types": ["grass"],
+    "height": 3.3,
+    "weight": 77.2,
+    "species": "덩굴포켓몬",
+    "description": "덩굴을 휘감아 상대를 조인다. 매일 새로운 덩굴이 자라난다."
+  },
+  {
+    "nationalNo": 115,
+    "name": "캥카",
+    "types": ["normal"],
+    "height": 7.2,
+    "weight": 176.4,
+    "species": "가족포켓몬",
+    "description": "배의 주머니로 아기를 보호한다. 아기를 지키기 위해 도망가지 않는다."
+  },
+  {
+    "nationalNo": 116,
+    "name": "쏘드라",
+    "types": ["water"],
+    "height": 1.4,
+    "weight": 17.6,
+    "species": "드래곤포켓몬",
+    "description": "꼬리로 균형을 잡고 헤엄친다. 알을 안고 헤엄치는 모습이 발견된다."
+  },
+  {
+    "nationalNo": 117,
+    "name": "시드라",
+    "types": ["water"],
+    "height": 3.9,
+    "weight": 55.1,
+    "species": "드래곤포켓몬",
+    "description": "등가시에서 독을 뿜는다. 먹이를 잡을 때는 강한 물줄기를 쏜다."
+  },
+  {
+    "nationalNo": 118,
+    "name": "콘치",
+    "types": ["water"],
+    "height": 2.0,
+    "weight": 33.1,
+    "species": "금붕어포켓몬",
+    "description": "지느러미로 헤엄치며 먹이를 찾는다. 뿔로 바위를 부수고 먹이를 찾는다."
+  },
+  {
+    "nationalNo": 119,
+    "name": "왕콘치",
+    "types": ["water"],
+    "height": 4.3,
+    "weight": 86.0,
+    "species": "금붕어포켓몬",
+    "description": "뿔로 구멍을 뚫고 산호초 속으로 들어간다. 겨울이 되면 따뜻한 바다로 이동한다."
+  },
+  {
+    "nationalNo": 120,
+    "name": "별가사리",
+    "types": ["water"],
+    "height": 2.6,
+    "weight": 76.1,
+    "species": "별포켓몬",
+    "description": "중심의 보석이 빨갛게 빛난다. 밤이 되면 보석의 빛이 더욱 강해진다."
+  },
+  {
+    "nationalNo": 121,
+    "name": "아쿠스타",
+    "types": ["water", "psychic"],
+    "height": 3.6,
+    "weight": 176.4,
+    "species": "신비포켓몬",
+    "description": "중심의 보석이 7가지 색으로 빛난다. 보석의 빛으로 상대를 현혹한다."
+  },
+  {
+    "nationalNo": 122,
+    "name": "마임맨",
+    "types": ["psychic", "fairy"],
+    "height": 4.3,
+    "weight": 120.2,
+    "species": "배리어포켓몬",
+    "description": "손짓으로 보이지 않는 벽을 만든다. 재주넘기를 잘한다."
+  },
+  {
+    "nationalNo": 123,
+    "name": "스라크",
+    "types": ["bug", "flying"],
+    "height": 4.9,
+    "weight": 123.5,
+    "species": "낫포켓몬",
+    "description": "날카로운 낫으로 먹이를 베어낸다. 재빠른 움직임으로 상대를 혼란시킨다."
+  },
+  {
+    "nationalNo": 124,
+    "name": "루주라",
+    "types": ["ice", "psychic"],
+    "height": 4.3,
+    "weight": 89.5,
+    "species": "인간형포켓몬",
+    "description": "춤추듯 움직이며 얼음 기술을 쓴다. 입맞춤으로 상대를 얼린다."
+  },
+  {
+    "nationalNo": 125,
+    "name": "에레브",
+    "types": ["electric"],
+    "height": 3.6,
+    "weight": 66.1,
+    "species": "전기포켓몬",
+    "description": "강력한 전류를 발생시킨다. 정전이 일어나면 발전소 대신 전기를 공급한다."
+  },
+  {
+    "nationalNo": 126,
+    "name": "마그마",
+    "types": ["fire"],
+    "height": 4.3,
+    "weight": 98.1,
+    "species": "불뿜기포켓몬",
+    "description": "몸에서 항상 불꽃이 타오른다. 화산 근처에서 발견된다."
+  },
+  {
+    "nationalNo": 127,
+    "name": "쁘사이저",
+    "types": ["bug"],
+    "height": 4.9,
+    "weight": 121.3,
+    "species": "뿔집게포켓몬",
+    "description": "강력한 집게로 먹이를 자른다. 집게로 상대를 꽉 잡으면 놓치지 않는다."
+  },
+  {
+    "nationalNo": 128,
+    "name": "켄타로스",
+    "types": ["normal"],
+    "height": 4.6,
+    "weight": 194.9,
+    "species": "성난소포켓몬",
+    "description": "세 개의 꼬리를 휘두르며 돌진한다. 한번 달리기 시작하면 멈추기 어렵다."
+  },
+  {
+    "nationalNo": 129,
+    "name": "잉어킹",
+    "types": ["water"],
+    "height": 2.9,
+    "weight": 22.0,
+    "species": "물고기포켓몬",
+    "description": "힘이 없어서 물살에 떠밀려 다닌다. 튀어오르기만 할 뿐 아무것도 못한다."
+  },
+  {
+    "nationalNo": 130,
+    "name": "갸라도스",
+    "types": ["water", "flying"],
+    "height": 21.3,
+    "weight": 518.1,
+    "species": "흉악포켓몬",
+    "description": "한번 화나면 도시 전체를 파괴할 때까지 날뛴다. 파괴의 화신이라 불린다."
+  },
+  {
+    "nationalNo": 131,
+    "name": "라프라스",
+    "types": ["water", "ice"],
+    "height": 8.2,
+    "weight": 485.0,
+    "species": "탈것포켓몬",
+    "description": "지적이며 사람의 말을 이해한다. 등에 사람을 태우고 바다를 건넌다."
+  },
+  {
+    "nationalNo": 132,
+    "name": "메타몽",
+    "types": ["normal"],
+    "height": 1.0,
+    "weight": 8.8,
+    "species": "변신포켓몬",
+    "description": "세포를 재구성하여 모든 것으로 변신한다. 하지만 기억에 의존하여 변신한다."
+  },
+  {
+    "nationalNo": 133,
+    "name": "이브이",
+    "types": ["normal"],
+    "height": 1.0,
+    "weight": 14.3,
+    "species": "진화포켓몬",
+    "description": "불안정한 유전자를 가지고 있어서 환경에 따라 다양하게 진화한다."
+  },
+  {
+    "nationalNo": 134,
+    "name": "샤미드",
+    "types": ["water"],
+    "height": 3.3,
+    "weight": 63.9,
+    "species": "거품포켓몬",
+    "description": "물 속에서 지느러미가 흔들리면 아름답다. 비가 올 것 같으면 몸에서 진동이 느껴진다."
+  },
+  {
+    "nationalNo": 135,
+    "name": "쥬피썬더",
+    "types": ["electric"],
+    "height": 2.6,
+    "weight": 54.0,
+    "species": "번개포켓몬",
+    "description": "날카로운 바늘 같은 털이 전기를 발산한다. 번개구름을 부르는 힘을 가졌다."
+  },
+  {
+    "nationalNo": 136,
+    "name": "부스터",
+    "types": ["fire"],
+    "height": 2.9,
+    "weight": 55.1,
+    "species": "화염포켓몬",
+    "description": "체내에 불꽃 주머니가 있다. 체온이 높아서 비가 오면 주위에서 증기가 난다."
+  },
+  {
+    "nationalNo": 137,
+    "name": "폴리곤",
+    "types": ["normal"],
+    "height": 2.6,
+    "weight": 80.5,
+    "species": "가상포켓몬",
+    "description": "인공적으로 만들어진 포켓몬이다. 사이버 공간에서 자유롭게 활동한다."
+  },
+  {
+    "nationalNo": 138,
+    "name": "암나이트",
+    "types": ["rock", "water"],
+    "height": 1.4,
+    "weight": 16.5,
+    "species": "나선포켓몬",
+    "description": "멸종된 고대 포켓몬을 화석에서 부활시켰다. 바다 밑바닥을 헤엄친다."
+  },
+  {
+    "nationalNo": 139,
+    "name": "암스타",
+    "types": ["rock", "water"],
+    "height": 3.3,
+    "weight": 77.2,
+    "species": "나선포켓몬",
+    "description": "날카로운 촉수로 먹이를 잡는다. 단단한 껍데기는 어떤 공격도 막아낸다."
+  },
+  {
+    "nationalNo": 140,
+    "name": "투구",
+    "types": ["rock", "water"],
+    "height": 1.7,
+    "weight": 25.4,
+    "species": "껍질포켓몬",
+    "description": "약 3억 년 전에 멸종됐다. 바다 밑바닥을 기어 다니며 먹이를 찾는다."
+  },
+  {
+    "nationalNo": 141,
+    "name": "투구푸스",
+    "types": ["rock", "water"],
+    "height": 4.3,
+    "weight": 89.3,
+    "species": "껍질포켓몬",
+    "description": "날카로운 발톱으로 먹이를 잡는다. 수영이 매우 빨라서 옛날에는 바다의 지배자였다."
+  },
+  {
+    "nationalNo": 142,
+    "name": "프테라",
+    "types": ["rock", "flying"],
+    "height": 5.9,
+    "weight": 130.0,
+    "species": "화석포켓몬",
+    "description": "날카로운 이빨로 먹이를 잡아 하늘에서 먹는다. 공룡 시대의 포켓몬이다."
+  },
+  {
+    "nationalNo": 143,
+    "name": "잠만보",
+    "types": ["normal"],
+    "height": 6.9,
+    "weight": 1014.1,
+    "species": "졸음포켓몬",
+    "description": "하루에 400kg의 음식을 먹는다. 식사가 끝나면 곧바로 잠에 빠진다."
+  },
+  {
+    "nationalNo": 144,
+    "name": "프리져",
+    "types": ["ice", "flying"],
+    "height": 5.6,
+    "weight": 122.1,
+    "species": "냉동포켓몬",
+    "description": "전설의 새포켓몬. 날개를 펼치면 눈이 내리기 시작한다."
+  },
+  {
+    "nationalNo": 145,
+    "name": "썬더",
+    "types": ["electric", "flying"],
+    "height": 5.2,
+    "weight": 116.0,
+    "species": "전기포켓몬",
+    "description": "전설의 새포켓몬. 구름 속에 살며 번개를 자유자재로 조종한다."
+  },
+  {
+    "nationalNo": 146,
+    "name": "파이어",
+    "types": ["fire", "flying"],
+    "height": 6.6,
+    "weight": 132.3,
+    "species": "화염포켓몬",
+    "description": "전설의 새포켓몬. 날개를 펼치면 붉은 불꽃이 아름답게 빛난다."
+  },
+  {
+    "nationalNo": 147,
+    "name": "미뇽",
+    "types": ["dragon"],
+    "height": 5.9,
+    "weight": 7.3,
+    "species": "드래곤포켓몬",
+    "description": "탈피를 거듭하며 성장한다. 수영을 잘해서 폭포도 거슬러 올라간다."
+  },
+  {
+    "nationalNo": 148,
+    "name": "신뇽",
+    "types": ["dragon"],
+    "height": 13.1,
+    "weight": 36.4,
+    "species": "드래곤포켓몬",
+    "description": "바다에서 큰 소용돌이를 일으킨다. 화가 나면 광란 상태가 된다."
+  },
+  {
+    "nationalNo": 149,
+    "name": "망나뇽",
+    "types": ["dragon", "flying"],
+    "height": 7.2,
+    "weight": 463.0,
+    "species": "드래곤포켓몬",
+    "description": "지능이 높고 인정이 많다. 조난당한 배를 육지까지 안내한다."
+  },
+  {
+    "nationalNo": 150,
+    "name": "뮤츠",
+    "types": ["psychic"],
+    "height": 6.6,
+    "weight": 269.0,
+    "species": "유전포켓몬",
+    "description": "유전자를 조작하여 만들어진 포켓몬. 과학의 힘으로 만들어졌지만 따뜻한 마음은 없다."
+  },
+  {
+    "nationalNo": 151,
+    "name": "뮤",
+    "types": ["psychic"],
+    "height": 1.4,
+    "weight": 8.8,
+    "species": "신종포켓몬",
+    "description": "모든 포켓몬의 유전자를 가지고 있다고 한다. 모습을 보는 것은 매우 어렵다."
+  }
+]

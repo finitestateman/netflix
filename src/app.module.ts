@@ -9,6 +9,8 @@ import { DirectorModule } from './director/director.module';
 import { Director } from './director/entity/director.entity';
 import { GenreModule } from './genre/genre.module';
 import { Genre } from './genre/entities/genre.entity';
+import { Pokemon } from './pokemons/entities/pokemon.entity';
+import { PokemonsModule } from './pokemons/pokemons.module';
 
 @Module({
     // 또다른 module을 import할 때
@@ -33,14 +35,16 @@ import { Genre } from './genre/entities/genre.entity';
                 username: configService.get<string>('DB_USERNAME'),
                 password: configService.get<string>('DB_PASSWORD'),
                 database: configService.get<string>('DB_DATABASE'),
-                entities: [Movie, MovieDetail, Director, Genre],
+                entities: [Movie, MovieDetail, Director, Genre, Pokemon],
                 synchronize: true,
+                logging: true,
             }),
             inject: [ConfigService],
         }),
         MovieModule,
         DirectorModule,
         GenreModule,
+        PokemonsModule,
     ],
     // import를 하는 module에서 쓸 수 있게 하고 싶은 것들을 export에 적어준다
     exports: [],
