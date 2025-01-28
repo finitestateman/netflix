@@ -1,8 +1,9 @@
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { PartialType } from '@nestjs/mapped-types';
+import { CreateGenreDto } from './create-genre.dto';
 
-export class UpdateGenreDto {
-    @IsNotEmpty()
-    @IsString()
-    @IsOptional()
-    public name?: string;
-}
+export class UpdateGenreDto extends PartialType(CreateGenreDto) {}
+
+// @IsNotEmpty()
+// @IsString()
+// @IsOptional()
+// public name?: string;
