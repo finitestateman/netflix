@@ -1,27 +1,48 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 
 @Injectable()
 export class UserService {
+    public constructor(
+        @InjectRepository(User)
+        private readonly userRepository: Repository<User>,
+    ) {}
+
     public create(createUserDto: CreateUserDto): Promise<User> {
-        return Promise.resolve(null);
+        return this.userRepository.save(createUserDto);
     }
 
     public findAll(): Promise<User[]> {
-        return Promise.resolve([] as User[]);
+        return this.userRepository.find();
     }
 
-    public findOne(id: number): Promise<User> {
-        return Promise.resolve(null);
+    public async findOne(id: number): Promise<User> {
+        const user = await this.userRepository.findOne({ where: { id } });
+
+        if (!user) {
+            throw new NotFoundException('존재하지 않는 사용자입니다');
+        }
+
+        return user;
     }
 
-    public update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
-        return Promise.resolve(null);
+    public async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
+        const user = await this.userRepository.findOne({ where: { id } });
+
+        if (!user) {
+            throw new NotFoundException('존재하지 않는 사용자입니다');
+        }
+
+        await this.userRepository.update(id, updateUserDto);
+
+        return this.userRepository.findOne({ where: { id } });
     }
 
-    public remove(id: number): Promise<void> {
-        return Promise.resolve(null);
+    public remove(id: number): Promise<DeleteResult> {
+        return this.userRepository.delete(id);
     }
 }

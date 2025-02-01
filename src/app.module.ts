@@ -11,6 +11,7 @@ import { GenreModule } from './genre/genre.module';
 import { Genre } from './genre/entities/genre.entity';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
+import { User } from './user/entities/user.entity';
 
 @Module({
     // 또다른 module을 import할 때
@@ -35,7 +36,7 @@ import { UserModule } from './user/user.module';
                 username: configService.get<string>('DB_USERNAME'),
                 password: configService.get<string>('DB_PASSWORD'),
                 database: configService.get<string>('DB_DATABASE'),
-                entities: [Movie, MovieDetail, Director, Genre],
+                entities: [Movie, MovieDetail, Director, Genre, User],
                 synchronize: true,
             }),
             inject: [ConfigService],

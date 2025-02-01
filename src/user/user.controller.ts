@@ -1,8 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
+import { DeleteResult } from 'typeorm';
 
 @Controller('user')
 export class UserController {
@@ -19,17 +20,17 @@ export class UserController {
     }
 
     @Get(':id')
-    public findOne(@Param('id') id: string): Promise<User> {
+    public findOne(@Param('id', ParseIntPipe) id: string): Promise<User> {
         return this.userService.findOne(Number(id));
     }
 
     @Patch(':id')
-    public update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto): Promise<User> {
+    public update(@Param('id', ParseIntPipe) id: string, @Body() updateUserDto: UpdateUserDto): Promise<User> {
         return this.userService.update(Number(id), updateUserDto);
     }
 
     @Delete(':id')
-    public remove(@Param('id') id: string): Promise<void> {
+    public remove(@Param('id', ParseIntPipe) id: string): Promise<DeleteResult> {
         return this.userService.remove(Number(id));
     }
 }
