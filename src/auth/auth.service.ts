@@ -4,6 +4,8 @@ import { User } from 'src/user/entities/user.entity';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { ConfigService } from '@nestjs/config';
+import type { AuthTokens } from './auth.types';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
@@ -11,6 +13,7 @@ export class AuthService {
         @InjectRepository(User)
         private readonly userRepository: Repository<User>,
         private readonly configService: ConfigService,
+        private readonly jwtService: JwtService,
     ) {}
 
     public parseBasicToken(rawToken: string): Pick<User, 'email' | 'password'> {
@@ -55,5 +58,44 @@ export class AuthService {
         await this.userRepository.save(newUser);
 
         return this.userRepository.findOne({ where: { email } });
+    }
+
+    public async login(rawToken: string): Promise<AuthTokens> {
+        const { email, password } = this.parseBasicToken(rawToken);
+
+        const user = await this.userRepository.findOne({ where: { email } });
+
+        if (!user) {
+            throw new BadRequestException('가입되지 않은 이메일입니다!');
+        }
+
+        const passwordMatched = await bcrypt.compare(password, user.password);
+
+        if (!passwordMatched) {
+            throw new BadRequestException('비밀번호가 일치하지 않습니다!');
+        }
+
+        const accessTokenSecret = this.configService.get<string>('ACCESS_TOKEN_SECRET');
+        const refreshTokenSecret = this.configService.get<string>('REFRESH_TOKEN_SECRET');
+
+        return {
+            accessToken: await this.jwtService.signAsync(
+                {
+                    sub: user.id,
+                    role: user.role,
+                    type: 'access',
+                },
+                // https://github.com/vercel/ms
+                { secret: accessTokenSecret, expiresIn: '10m' },
+            ),
+            refreshToken: await this.jwtService.signAsync(
+                {
+                    sub: user.id,
+                    role: user.role,
+                    type: 'refresh',
+                },
+                { secret: refreshTokenSecret, expiresIn: '1d' },
+            ),
+        };
     }
 }
