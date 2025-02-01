@@ -1,0 +1,9 @@
+{
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.expand": false,
+    "explorer.fileNesting.patterns": {
+        "package.json": "package-lock.json, pnpm*, eslint*, nest-cli.json, tsconfig*, .*",
+        "*.controller.ts": "*.controller.spec.ts",
+        "*.service.ts": "*.service.spec.ts",
+    }
+}
