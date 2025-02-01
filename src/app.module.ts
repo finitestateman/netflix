@@ -9,6 +9,8 @@ import { DirectorModule } from './director/director.module';
 import { Director } from './director/entity/director.entity';
 import { GenreModule } from './genre/genre.module';
 import { Genre } from './genre/entities/genre.entity';
+import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
 
 @Module({
     // 또다른 module을 import할 때
@@ -41,6 +43,8 @@ import { Genre } from './genre/entities/genre.entity';
         MovieModule,
         DirectorModule,
         GenreModule,
+        AuthModule,
+        UserModule,
     ],
     // import를 하는 module에서 쓸 수 있게 하고 싶은 것들을 export에 적어준다
     exports: [],
