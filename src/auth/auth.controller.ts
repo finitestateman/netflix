@@ -33,4 +33,10 @@ export class AuthController {
             refreshToken: await this.authService.issueToken(req.user as User, 'refresh'),
         };
     }
+
+    @UseGuards(JwtAuthGuard)
+    @Get('private')
+    public private(@Request() req: Express.Request): Promise<User> {
+        return req.user as Promise<User>;
+    }
 }

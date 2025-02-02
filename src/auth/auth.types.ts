@@ -3,6 +3,8 @@ export type AuthTokens = {
     refreshToken: string;
 };
 
+export type TokenType = 'access' | 'refresh';
+
 export type RegisteredClaim = {
     iss?: string; // issuer
     sub?: number; // subject

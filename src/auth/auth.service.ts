@@ -4,7 +4,7 @@ import { User } from 'src/user/entities/user.entity';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { ConfigService } from '@nestjs/config';
-import type { AuthTokens } from './auth.types';
+import type { AuthTokens, TokenType } from './auth.types';
 import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
