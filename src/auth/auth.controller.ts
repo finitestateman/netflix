@@ -1,8 +1,9 @@
-import { Controller, Headers, Post, Request, UseGuards } from '@nestjs/common';
+import { Controller, Get, Headers, Post, Request, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { User } from 'src/user/entities/user.entity';
 import type { AuthTokens } from './auth.types';
 import { CustomAuthGuard } from './strategy/local.strategy';
+import { JwtAuthGuard } from './strategy/jwt.strategy';
 
 @Controller('auth')
 export class AuthController {
@@ -26,8 +27,10 @@ export class AuthController {
     // https://docs.nestjs.com/controllers#request-object
     // https://velog.io/@hyejiining/NestJS-Request%EC%99%80-Req-%EC%B0%A8%EC%9D%B4%EC%A0%90
     // Express.Request가 아닌 그냥 Request에는 user 속성이 없다
-    public loginUserPassport(@Request() req: Express.Request): Promise<User> {
-        // 일단은 강의에서 user를 리턴하고 다음 강의에서 수정한다
-        return req.user as Promise<User>;
+    public async loginUserPassport(@Request() req: Express.Request): Promise<AuthTokens> {
+        return {
+            accessToken: await this.authService.issueToken(req.user as User, 'access'),
+            refreshToken: await this.authService.issueToken(req.user as User, 'refresh'),
+        };
     }
 }

@@ -76,32 +76,23 @@ export class AuthService {
         return user;
     }
 
+    public issueToken({ id: sub, role }: User, type: TokenType = 'access'): Promise<string> {
+        const accessTokenSecret = this.configService.get<string>('ACCESS_TOKEN_SECRET');
+        const refreshTokenSecret = this.configService.get<string>('REFRESH_TOKEN_SECRET');
+
+        const secret = type === 'access' ? accessTokenSecret : refreshTokenSecret;
+        const expiresIn = type === 'access' ? '3m' : '1d'; // https://github.com/vercel/ms
+
+        return this.jwtService.signAsync({ sub, role, type }, { secret, expiresIn });
+    }
+
     public async login(rawToken: string): Promise<AuthTokens> {
         const { email, password } = this.parseBasicToken(rawToken);
         const user = await this.authenticate(email, password);
 
-        const accessTokenSecret = this.configService.get<string>('ACCESS_TOKEN_SECRET');
-        const refreshTokenSecret = this.configService.get<string>('REFRESH_TOKEN_SECRET');
-
         return {
-            accessToken: await this.jwtService.signAsync(
-                {
-                    sub: user.id,
-                    role: user.role,
-                    type: 'access',
-                },
-                // https://github.com/vercel/ms
-                { secret: accessTokenSecret, expiresIn: '3m' },
-            ),
-            refreshToken: await this.jwtService.signAsync(
-                {
-                    sub: user.id,
-                    role: user.role,
-                    type: 'refresh',
-                },
-                // https://github.com/vercel/ms
-                { secret: refreshTokenSecret, expiresIn: '1d' },
-            ),
+            accessToken: await this.issueToken(user, 'access'),
+            refreshToken: await this.issueToken(user, 'refresh'),
         };
     }
 }
