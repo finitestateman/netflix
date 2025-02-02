@@ -60,9 +60,7 @@ export class AuthService {
         return this.userRepository.findOne({ where: { email } });
     }
 
-    public async login(rawToken: string): Promise<AuthTokens> {
-        const { email, password } = this.parseBasicToken(rawToken);
-
+    public async authenticate(email: string, password: string): Promise<User> {
         const user = await this.userRepository.findOne({ where: { email } });
 
         if (!user) {
@@ -75,6 +73,13 @@ export class AuthService {
             throw new BadRequestException('비밀번호가 일치하지 않습니다!');
         }
 
+        return user;
+    }
+
+    public async login(rawToken: string): Promise<AuthTokens> {
+        const { email, password } = this.parseBasicToken(rawToken);
+        const user = await this.authenticate(email, password);
+
         const accessTokenSecret = this.configService.get<string>('ACCESS_TOKEN_SECRET');
         const refreshTokenSecret = this.configService.get<string>('REFRESH_TOKEN_SECRET');
 
@@ -86,7 +91,7 @@ export class AuthService {
                     type: 'access',
                 },
                 // https://github.com/vercel/ms
-                { secret: accessTokenSecret, expiresIn: '10m' },
+                { secret: accessTokenSecret, expiresIn: '3m' },
             ),
             refreshToken: await this.jwtService.signAsync(
                 {
@@ -94,6 +99,7 @@ export class AuthService {
                     role: user.role,
                     type: 'refresh',
                 },
+                // https://github.com/vercel/ms
                 { secret: refreshTokenSecret, expiresIn: '1d' },
             ),
         };
