@@ -12,6 +12,8 @@ import { Genre } from './genre/entities/genre.entity';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { User } from './user/entities/user.entity';
+import { DOTENV } from './common/const/env.const';
+import { DatabaseType } from 'typeorm';
 
 @Module({
     // 또다른 module을 import할 때
@@ -33,12 +35,13 @@ import { User } from './user/entities/user.entity';
         }),
         TypeOrmModule.forRootAsync({
             useFactory: (configService: ConfigService) => ({
-                type: configService.get<string>('DB_TYPE') as 'postgres',
-                host: configService.get<string>('DB_HOST'),
-                port: configService.get<number>('DB_PORT'),
-                username: configService.get<string>('DB_USERNAME'),
-                password: configService.get<string>('DB_PASSWORD'),
-                database: configService.get<string>('DB_DATABASE'),
+                // sqljs는 database 옵션과 공존할 수 없어서 제외해야한다
+                type: configService.get<Exclude<DatabaseType, 'sqljs'>>(DOTENV.DB_TYPE),
+                host: configService.get<string>(DOTENV.DB_HOST),
+                port: configService.get<number>(DOTENV.DB_PORT),
+                username: configService.get<string>(DOTENV.DB_USERNAME),
+                password: configService.get<string>(DOTENV.DB_PASSWORD),
+                database: configService.get<string>(DOTENV.DB_DATABASE),
                 entities: [Movie, MovieDetail, Director, Genre, User],
                 synchronize: true,
             }),

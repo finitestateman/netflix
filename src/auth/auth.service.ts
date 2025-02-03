@@ -6,6 +6,7 @@ import * as bcrypt from 'bcrypt';
 import { ConfigService } from '@nestjs/config';
 import type { AuthTokens, JwtClaim, Payload } from './auth.types';
 import { JwtService } from '@nestjs/jwt';
+import { DOTENV } from 'src/common/const/env.const';
 
 @Injectable()
 export class AuthService {
@@ -55,7 +56,7 @@ export class AuthService {
         }
 
         const payload: Payload = await this.jwtService.verifyAsync<JwtClaim>(token, {
-            secret: this.configService.get<string>('REFRESH_TOKEN_SECRET'),
+            secret: this.configService.get<string>(DOTENV.REFRESH_TOKEN_SECRET),
         });
 
         if (payload.tokenType !== 'refresh') {
@@ -74,7 +75,7 @@ export class AuthService {
             throw new ConflictException('이미 가입된 이메일입니다!');
         }
 
-        const hashedPassword = await bcrypt.hash(password, this.configService.get<number>('HASH_SALT_ROUNDS'));
+        const hashedPassword = await bcrypt.hash(password, this.configService.get<number>(DOTENV.HASH_SALT_ROUNDS));
 
         const newUser = this.userRepository.create({ email, password: hashedPassword });
         await this.userRepository.save(newUser);
@@ -99,11 +100,14 @@ export class AuthService {
     }
 
     public async issueToken(payload: Required<JwtClaim>): Promise<string> {
-        const accessTokenSecret = this.configService.get<string>('ACCESS_TOKEN_SECRET');
-        const refreshTokenSecret = this.configService.get<string>('REFRESH_TOKEN_SECRET');
+        const accessTokenSecret = this.configService.get<string>(DOTENV.ACCESS_TOKEN_SECRET);
+        const refreshTokenSecret = this.configService.get<string>(DOTENV.REFRESH_TOKEN_SECRET);
 
-        const secret = payload.tokenType === 'access' ? accessTokenSecret : refreshTokenSecret;
-        const expiresIn = payload.tokenType === 'access' ? '3m' : '1d'; // https://github.com/vercel/ms
+        const { secret, expiresIn } =
+            // https://github.com/vercel/ms
+            payload.tokenType === 'access'
+                ? { secret: accessTokenSecret, expiresIn: '3m' }
+                : { secret: refreshTokenSecret, expiresIn: '1d' };
 
         const token = await this.jwtService.signAsync(payload, { secret, expiresIn });
         return token;

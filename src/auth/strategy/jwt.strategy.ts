@@ -4,6 +4,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { AuthGuard } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { Payload } from '../auth.types';
+import { DOTENV } from 'src/common/const/env.const';
 
 const STRATEGY_NAME = 'jwt';
 export class JwtAuthGuard extends AuthGuard(STRATEGY_NAME) {}
@@ -14,7 +15,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
         super({
             jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(), // 그 외에 여러가지 ExtractJwt.fromXXX()가 있다
             ignoreExpiration: false,
-            secretOrKey: configService.get<string>('ACCESS_TOKEN_SECRET'),
+            secretOrKey: configService.get<string>(DOTENV.ACCESS_TOKEN_SECRET),
         });
     }
 
