@@ -4,7 +4,7 @@ import { User } from 'src/user/entities/user.entity';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { ConfigService } from '@nestjs/config';
-import type { AuthTokens, TokenType } from './auth.types';
+import type { AuthTokens, JwtClaim, Payload } from './auth.types';
 import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
@@ -42,6 +42,28 @@ export class AuthService {
         return { email, password };
     }
 
+    // refresh 토큰으로만 access 토큰을 rotate하므로 isRefreshToken 파라미터같은 게 필요 없다
+    public async parseBearerToken(rawToken: string): Promise<Payload> {
+        const bearerSplit = rawToken.split(' ');
+        if (bearerSplit.length !== 2) {
+            throw new BadRequestException('토큰의 형식이 잘못됐습니다!');
+        }
+
+        const [scheme, token] = bearerSplit;
+        if (scheme !== 'Bearer') {
+            throw new BadRequestException('token의 스키마가 Bearer가 아닙니다!');
+        }
+
+        const payload: Payload = await this.jwtService.verifyAsync<JwtClaim>(token, {
+            secret: this.configService.get<string>('REFRESH_TOKEN_SECRET'),
+        });
+
+        if (payload.tokenType !== 'refresh') {
+            throw new BadRequestException('refresh 토큰을 입력해주세요!');
+        }
+        return payload;
+    }
+
     // rawToken = Basic <token>
     public async register(rawToken: string): Promise<User> {
         const { email, password } = this.parseBasicToken(rawToken);
@@ -76,23 +98,26 @@ export class AuthService {
         return user;
     }
 
-    public issueToken({ id: sub, role }: User, type: TokenType = 'access'): Promise<string> {
+    public async issueToken(payload: Required<JwtClaim>): Promise<string> {
         const accessTokenSecret = this.configService.get<string>('ACCESS_TOKEN_SECRET');
         const refreshTokenSecret = this.configService.get<string>('REFRESH_TOKEN_SECRET');
 
-        const secret = type === 'access' ? accessTokenSecret : refreshTokenSecret;
-        const expiresIn = type === 'access' ? '3m' : '1d'; // https://github.com/vercel/ms
+        const secret = payload.tokenType === 'access' ? accessTokenSecret : refreshTokenSecret;
+        const expiresIn = payload.tokenType === 'access' ? '3m' : '1d'; // https://github.com/vercel/ms
 
-        return this.jwtService.signAsync({ sub, role, type }, { secret, expiresIn });
+        const token = await this.jwtService.signAsync(payload, { secret, expiresIn });
+        return token;
     }
 
     public async login(rawToken: string): Promise<AuthTokens> {
         const { email, password } = this.parseBasicToken(rawToken);
         const user = await this.authenticate(email, password);
 
-        return {
-            accessToken: await this.issueToken(user, 'access'),
-            refreshToken: await this.issueToken(user, 'refresh'),
-        };
+        const jwtClaim: JwtClaim = { sub: user.id, role: user.role };
+
+        const accessToken = await this.issueToken({ ...jwtClaim, tokenType: 'access' });
+        const refreshToken = await this.issueToken({ ...jwtClaim, tokenType: 'refresh' });
+
+        return { accessToken, refreshToken };
     }
 }

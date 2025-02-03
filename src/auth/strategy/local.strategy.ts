@@ -3,17 +3,14 @@ import { IStrategyOptions, Strategy } from 'passport-local';
 import { AuthService } from '../auth.service';
 import { User } from 'src/user/entities/user.entity';
 import { Injectable } from '@nestjs/common';
-import { Request } from 'express';
 
 // https://www.passportjs.org/packages/passport-local/
 
 const STRATEGY_NAME = 'custom';
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 export class CustomAuthGuard extends AuthGuard(STRATEGY_NAME) {}
 
 @Injectable()
-// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 export class LocalStrategy extends PassportStrategy(Strategy, STRATEGY_NAME) {
     public constructor(private readonly authService: AuthService) {
         const options: IStrategyOptions = {
@@ -22,7 +19,6 @@ export class LocalStrategy extends PassportStrategy(Strategy, STRATEGY_NAME) {
             // session: true,
             // passReqToCallback: false,
         };
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         super(options);
     }
 
