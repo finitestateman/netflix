@@ -1,11 +1,11 @@
-import { BadRequestException, ConflictException, Injectable } from '@nestjs/common';
+import { BadRequestException, ConflictException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/user/entities/user.entity';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { ConfigService } from '@nestjs/config';
 import type { AuthTokens, JwtClaim, Payload } from './auth.types';
-import { JwtService } from '@nestjs/jwt';
+import { JsonWebTokenError, JwtService, TokenExpiredError } from '@nestjs/jwt';
 import { DOTENV } from 'src/common/const/env.const';
 
 @Injectable()
@@ -43,7 +43,7 @@ export class AuthService {
         return { email, password };
     }
 
-    // refresh 토큰으로만 access 토큰을 rotate하므로 isRefreshToken 파라미터같은 게 필요 없다
+    // refresh 토큰으로만 access 토큰을 rotate하므로 isRefreshToken 파라미터같은 게 필요 없어보이는데 강의에선 이 메서드가 다른 데로 옮겨가면서 버려진다
     public async parseBearerToken(rawToken: string): Promise<Payload> {
         const bearerSplit = rawToken.split(' ');
         if (bearerSplit.length !== 2) {
@@ -55,14 +55,29 @@ export class AuthService {
             throw new BadRequestException('token의 스키마가 Bearer가 아닙니다!');
         }
 
-        const payload: Payload = await this.jwtService.verifyAsync<JwtClaim>(token, {
-            secret: this.configService.get<string>(DOTENV.REFRESH_TOKEN_SECRET),
-        });
+        try {
+            const payload: Payload = await this.jwtService.verifyAsync<JwtClaim>(token, {
+                secret: this.configService.get<string>(DOTENV.REFRESH_TOKEN_SECRET),
+            });
 
-        if (payload.tokenType !== 'refresh') {
-            throw new BadRequestException('refresh 토큰을 입력해주세요!');
+            if (payload.tokenType !== 'refresh') {
+                throw new BadRequestException('refresh 토큰을 입력해주세요!');
+            }
+            return payload;
+            // export { TokenExpiredError, NotBeforeError, JsonWebTokenError } from 'jsonwebtoken';
+        } catch (e) {
+            // 강의에선 분기 처리를 안 해서 모두 토근 만료로 응답한다
+            if (e instanceof TokenExpiredError) {
+                throw new UnauthorizedException({
+                    message: `refresh 토큰이 만료되었습니다! (${e.message})`,
+                    expiredAt: e.expiredAt,
+                });
+            } else if (e instanceof JsonWebTokenError) {
+                throw new UnauthorizedException(`refresh 토큰이 유효하지 않습니다! (${e.message})`);
+            } else {
+                throw e;
+            }
         }
-        return payload;
     }
 
     // rawToken = Basic <token>

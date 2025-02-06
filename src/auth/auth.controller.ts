@@ -4,6 +4,7 @@ import { User } from 'src/user/entities/user.entity';
 import type { AuthTokens, JwtClaim, Payload } from './auth.types';
 import { CustomAuthGuard } from './strategy/local.strategy';
 import { JwtAuthGuard } from './strategy/jwt.strategy';
+import { Request as ExpressRequest } from 'express';
 
 @Controller('auth')
 export class AuthController {
@@ -25,11 +26,13 @@ export class AuthController {
     @UseGuards(CustomAuthGuard)
     @Post('login/passport')
     // https://docs.nestjs.com/controllers#request-object
+    // @Req(), @Request()의 차이는 아래 블로그 참고
     // https://velog.io/@hyejiining/NestJS-Request%EC%99%80-Req-%EC%B0%A8%EC%9D%B4%EC%A0%90
-    // Express.Request가 아닌 그냥 Request에는 user 속성이 없다
-    public async loginUserPassport(@Request() req: Express.Request): Promise<AuthTokens> {
-        const { id, role } = req.user as User;
-        const jwtClaim: JwtClaim = { sub: id, role };
+    // Request는 따로 import 하지않아도 사용할 수 있기 때문에 반드시 import 해주되 @nestjs/common과 겹치므로 alias로 import 해준다
+    // 따라서 ExpressRequest & { user: User } 정도로 덮어써도 될 것 같다(ExpressRequest.user는 {}이고 인터섹션 뒤의 user는 user.tntity.User이다)
+    public async loginUserPassport(@Request() req: Request & { payload: Payload }): Promise<AuthTokens> {
+        const { sub, role } = req.payload;
+        const jwtClaim: JwtClaim = { sub, role };
 
         return {
             accessToken: await this.authService.issueToken({ ...jwtClaim, tokenType: 'access' }),
