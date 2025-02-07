@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { MovieModule } from './movie/movie.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -14,6 +14,7 @@ import { UserModule } from './user/user.module';
 import { User } from './user/entities/user.entity';
 import { DOTENV } from './common/const/env.const';
 import { DatabaseType } from 'typeorm';
+import { BearerTokenMiddleware } from './auth/middleware/bearer-token.middleware';
 
 @Module({
     // 또다른 module을 import할 때
@@ -61,4 +62,20 @@ import { DatabaseType } from 'typeorm';
     // inject 해줄 수 있는 것들이 provider에 들어간다
     providers: [],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+    public configure(consumer: MiddlewareConsumer): any {
+        consumer
+            .apply(BearerTokenMiddleware)
+            .exclude(
+                {
+                    path: 'auth/login',
+                    method: RequestMethod.POST,
+                },
+                {
+                    path: 'auth/register',
+                    method: RequestMethod.POST,
+                },
+            )
+            .forRoutes('*');
+    }
+}

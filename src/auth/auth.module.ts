@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { User } from 'src/user/entities/user.entity';
@@ -16,6 +16,7 @@ import { JwtStrategy } from './strategy/jwt.strategy';
     ],
     controllers: [AuthController],
     providers: [AuthService, LocalStrategy, JwtStrategy],
-    exports: [AuthService],
+    // Config는 appModule에서 isGlobal: true로 설정했으므로 여기서 따로 설정할 필요가 없다
+    exports: [AuthService, JwtModule],
 })
 export class AuthModule {}
