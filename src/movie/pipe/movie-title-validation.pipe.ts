@@ -2,8 +2,9 @@ import { PipeTransform, ArgumentMetadata, Injectable, BadRequestException } from
 
 export interface MovieTitleValidationPipeOptions {
     exceptionFactory?: (error: string) => any;
-    // true: 빈 문자열도 허용, false: 빈 문자열 비허용(findAll)
-    allowEmpty?: boolean;
+    // true: MovieTitleRequiredException 발생(findAll에서 사용) -> true가 아니면 title이 무조건 존재해야 한다
+    // false: Exception 발생하지 않음(findOne에서 @Query가 있다면 사용)
+    allowNull?: boolean;
 }
 
 const MovieTitleLengthTooShortException = new BadRequestException('영화 제목은 3글자 이상이어야 합니다.');
@@ -18,7 +19,14 @@ export class MovieTitleValidationPipeGeneric<
     R = string,
 > implements PipeTransform<T, R>
 {
-    public constructor(private readonly options?: MovieTitleValidationPipeOptions) {}
+    private readonly defaultOptions: Required<MovieTitleValidationPipeOptions> = {
+        exceptionFactory: (error: string) => error,
+        allowNull: false, // 기본값 지정
+    };
+
+    public constructor(private readonly options?: MovieTitleValidationPipeOptions) {
+        this.options = { ...this.defaultOptions, ...options };
+    }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     public transform(value: T, metadata: ArgumentMetadata): R {
@@ -26,7 +34,7 @@ export class MovieTitleValidationPipeGeneric<
             throw MovieTitleArrayNotAllowedException;
         } else if (typeof value === 'string' && value?.length < 3) {
             throw MovieTitleLengthTooShortException;
-        } else if (typeof value === 'undefined' && !this.options?.allowEmpty) {
+        } else if (typeof value === 'undefined' && !this.options?.allowNull) {
             throw MovieTitleRequiredException;
         }
         return value as unknown as R;
@@ -35,7 +43,14 @@ export class MovieTitleValidationPipeGeneric<
 
 @Injectable()
 export class MovieTitleValidationPipe implements PipeTransform<string, string> {
-    public constructor(private readonly options?: MovieTitleValidationPipeOptions) {}
+    private readonly defaultOptions: Required<MovieTitleValidationPipeOptions> = {
+        exceptionFactory: (error: string) => error,
+        allowNull: false
+    };
+
+    public constructor(private readonly options?: MovieTitleValidationPipeOptions) {
+        this.options = { ...this.defaultOptions, ...options };
+    }
 
     public transform(value: string): string {
         // 강의에선 이렇게 했지만 단순히 그 아래에서 value?.length < 3 이렇게 해도 된다

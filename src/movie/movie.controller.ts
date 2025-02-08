@@ -34,7 +34,7 @@ export class MovieController {
         @Query(
             'title',
             new MovieTitleValidationPipeGeneric<string | string[] | undefined, string>({
-                allowEmpty: true,
+                allowNull: true,
             }),
         )
         title?: string,
