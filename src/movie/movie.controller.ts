@@ -13,12 +13,14 @@ import {
     HttpStatus,
     BadRequestException,
     ParseArrayPipe,
+    UseGuards,
 } from '@nestjs/common';
 import { MovieService } from './movie.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
 import { MovieTitleValidationPipeGeneric } from './pipe/movie-title-validation.pipe';
 import { Movie } from './entity/movie.entity';
+import { AccessTokenGuard } from 'src/auth/guard/auth.guard';
 
 /**
  * Controller: 요청 자체, query, body, param 등에 대한 것만 처리한다
@@ -76,6 +78,7 @@ export class MovieController {
     // }
 
     @Post()
+    // @UseGuards(AccessTokenGuard) // 이렇게 개별 설정할 수도 있다(지금은 글로벌 적용되어있어서 가드를 두번 타기 때문에 주석처리함)
     public createUsingQueryBuilder(@Body() body: CreateMovieDto): Promise<Movie> {
         return this.movieService.createUsingQueryBuilder(body);
     }

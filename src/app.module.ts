@@ -15,6 +15,8 @@ import { User } from './user/entities/user.entity';
 import { DOTENV } from './common/const/env.const';
 import { DatabaseType } from 'typeorm';
 import { BearerTokenMiddleware } from './auth/middleware/bearer-token.middleware';
+import { AccessTokenGuard } from './auth/guard/auth.guard';
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({
     // 또다른 module을 import할 때
@@ -60,7 +62,12 @@ import { BearerTokenMiddleware } from './auth/middleware/bearer-token.middleware
     // service는 로직을 담당하는 provider(=자바의 Bean) 중 하나이다
     // 나중에는 repository나 guard 같은 것들도 providers에 들어간다
     // inject 해줄 수 있는 것들이 provider에 들어간다
-    providers: [],
+    providers: [
+        {
+            provide: APP_GUARD,
+            useClass: AccessTokenGuard,
+        },
+    ],
 })
 export class AppModule implements NestModule {
     public configure(consumer: MiddlewareConsumer): any {
