@@ -5,11 +5,13 @@ import type { AuthTokens, JwtClaim, Payload } from './auth.types';
 import { CustomAuthGuard } from './strategy/local.strategy';
 import { JwtAuthGuard } from './strategy/jwt.strategy';
 import { Request as ExpressRequest } from 'express';
+import { Public } from './decorator/public.decorator';
 
 @Controller('auth')
 export class AuthController {
     public constructor(private readonly authService: AuthService) {}
 
+    @Public()
     @Post('register')
     // @Headers()는 글로벌 객체말고 @nestjs/common 객체를 사용해야 함
     // Authorization: Basic <token>
@@ -17,6 +19,7 @@ export class AuthController {
         return this.authService.register(token);
     }
 
+    @Public()
     @Post('login')
     public loginUser(@Headers('Authorization') token: string): Promise<AuthTokens> {
         return this.authService.login(token);
