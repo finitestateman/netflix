@@ -21,6 +21,7 @@ import { UpdateMovieDto } from './dto/update-movie.dto';
 import { MovieTitleValidationPipeGeneric } from './pipe/movie-title-validation.pipe';
 import { Movie } from './entity/movie.entity';
 import { AccessTokenGuard } from 'src/auth/guard/auth.guard';
+import { Public } from 'src/auth/decorator/public.decorator';
 
 /**
  * Controller: 요청 자체, query, body, param 등에 대한 것만 처리한다
@@ -31,6 +32,7 @@ import { AccessTokenGuard } from 'src/auth/guard/auth.guard';
 export class MovieController {
     public constructor(private readonly movieService: MovieService) {}
 
+    @Public()
     @Get()
     public findAll(
         @Query(

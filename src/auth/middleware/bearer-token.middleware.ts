@@ -26,9 +26,9 @@ export class BearerTokenMiddleware implements NestMiddleware {
             next();
             return;
         }
-        const token = this.validateBearerToken(authHeader);
 
         try {
+            const token = this.validateBearerToken(authHeader);
             // 클라이언트가 보낸 Payload가 무슨 형태일지 모르므로 제네릭을 쓰는 것은 썩 올바르지 않을 수 있다
             const { tokenType } = this.jwtService.decode<JwtClaim>(token);
             if (tokenType === undefined) {
@@ -49,17 +49,20 @@ export class BearerTokenMiddleware implements NestMiddleware {
 
             // export { TokenExpiredError, NotBeforeError, JsonWebTokenError } from 'jsonwebtoken';
         } catch (e) {
+            // try절에서 throw한 error가 next()에 의해 무시되고 가드로 넘어간다
+            // (위의 next()에서 에러 핸들링만 제대로 했다면 가드에서는 if (!request.user ...) 덕에 canActivate가 false가 반환되긴한다)
+            next();
             // 강의에선 분기 처리를 안 해서 모두 토근 만료로 응답한다
-            if (e instanceof TokenExpiredError) {
-                throw new UnauthorizedException({
-                    message: `토큰이 만료되었습니다! (${e.message})`,
-                    expiredAt: e.expiredAt,
-                });
-            } else if (e instanceof JsonWebTokenError) {
-                throw new UnauthorizedException(`토큰이 유효하지 않습니다! (${e.message})`);
-            } else {
-                throw e;
-            }
+            // if (e instanceof TokenExpiredError) {
+            //     throw new UnauthorizedException({
+            //         message: `토큰이 만료되었습니다! (${e.message})`,
+            //         expiredAt: e.expiredAt,
+            //     });
+            // } else if (e instanceof JsonWebTokenError) {
+            //     throw new UnauthorizedException(`토큰이 유효하지 않습니다! (${e.message})`);
+            // } else {
+            //     next();
+            // }
         }
     }
 
