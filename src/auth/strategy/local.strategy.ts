@@ -4,6 +4,7 @@ import { AuthService } from '../auth.service';
 import { ExecutionContext, Injectable } from '@nestjs/common';
 import { Payload } from '../auth.types';
 import { User } from 'src/user/entities/user.entity';
+import { Request as ExpressRequest } from 'express';
 // https://www.passportjs.org/packages/passport-local/
 
 const STRATEGY_NAME = 'custom';
@@ -14,7 +15,7 @@ export class CustomAuthGuard extends AuthGuard(STRATEGY_NAME) {
         // payload를 반환했는데 req.user에서 any 타입으로 꺼내오는 게 마음에 들지 않아 직접 request 객체에 실험적으로 넣어줘봤다
         // 하지만 여전히 payload를 return을 하긴 하므로 req.user에도 동일한 값이 들어가긴 한다
         // 하지만 user에 담는 것이 좋은 것 같다
-        const request = context.switchToHttp().getRequest<Express.Request & { payload: T }>();
+        const request = context.switchToHttp().getRequest<ExpressRequest & { payload: T }>();
         request.payload = payload;
         return payload;
     }
