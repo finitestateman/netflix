@@ -1,9 +1,12 @@
-import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
+import { Injectable, CanActivate, ExecutionContext, UnauthorizedException } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { Payload } from '../auth.types';
 import { Request as ExpressRequest } from 'express';
 import { Reflector } from '@nestjs/core';
 import { Public } from '../decorator/public.decorator';
+import { JwtService } from '@nestjs/jwt';
+import { ConfigService } from '@nestjs/config';
+import { DOTENV } from 'src/common/const/env.const';
 
 @Injectable()
 export class AccessTokenGuard implements CanActivate {
@@ -27,6 +30,39 @@ export class AccessTokenGuard implements CanActivate {
             return false;
         }
 
+        return true;
+    }
+}
+
+@Injectable()
+export class RefreshTokenGuard implements CanActivate {
+    public constructor(
+        private readonly reflector: Reflector,
+        private readonly jwtService: JwtService,
+        private readonly configService: ConfigService,
+    ) {}
+
+    public async canActivate(context: ExecutionContext): Promise<boolean> {
+        const request = context.switchToHttp().getRequest<ExpressRequest>();
+
+        try {
+            const [bearer, token] = request.headers.authorization?.split(' ') ?? [];
+            if (!token || bearer !== 'Bearer') {
+                throw new UnauthorizedException('토큰이 유효하지 않습니다!');
+            }
+
+            const payload = await this.jwtService.verifyAsync<Payload>(token, {
+                secret: this.configService.get<string>(DOTENV.REFRESH_TOKEN_SECRET),
+            });
+            if (!payload || payload.tokenType !== 'refresh') {
+                throw new UnauthorizedException('refresh 토큰이 아닙니다!');
+            }
+        } catch (e) {
+            if (e instanceof UnauthorizedException) {
+                throw e;
+            }
+            throw new UnauthorizedException();
+        }
         return true;
     }
 }

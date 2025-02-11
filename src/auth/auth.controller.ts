@@ -6,6 +6,7 @@ import { CustomAuthGuard } from './strategy/local.strategy';
 import { JwtAuthGuard } from './strategy/jwt.strategy';
 import { Request as ExpressRequest } from 'express';
 import { Public } from './decorator/public.decorator';
+import { RefreshTokenGuard } from './guard/auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -50,14 +51,13 @@ export class AuthController {
         return req.user;
     }
 
+    @Public()
+    @UseGuards(RefreshTokenGuard)
     @Post('token/access')
     public async rotateAccessToken(
         @Request() req: ExpressRequest & { user: Payload },
     ): Promise<Pick<AuthTokens, 'accessToken'>> {
         const { sub, role, tokenType }: Payload = req.user;
-        if (tokenType !== 'refresh') {
-            throw new UnauthorizedException('refresh 토큰으로만 access 토큰을 재발급할 수 있습니다!');
-        }
 
         return {
             accessToken: await this.authService.issueToken({ sub, role, tokenType }),
