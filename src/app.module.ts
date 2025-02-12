@@ -17,6 +17,7 @@ import { DatabaseType } from 'typeorm';
 import { BearerTokenMiddleware } from './auth/middleware/bearer-token.middleware';
 import { AccessTokenGuard } from './auth/guard/auth.guard';
 import { APP_GUARD } from '@nestjs/core';
+import { RBACGuard } from './auth/guard/rbac.guard';
 
 @Module({
     // 또다른 module을 import할 때
@@ -66,6 +67,16 @@ import { APP_GUARD } from '@nestjs/core';
         {
             provide: APP_GUARD,
             useClass: AccessTokenGuard,
+        },
+        {
+            // AccessTokenGuard 이후에 RBACGuard를 적용해야 의도대로 작동한다
+            // accessToken이 없으면 Role 검사를 할 필요도 없기 때문이다
+            // 1. bearerTokenMiddleware에서 (refresh든 access든) 검증하고 요청에 user(Payload) 객체를 추가했다
+            // 2. AccessTokenGuard에서 payload.tokenType이 accessToken인지 확인하고 Public이 아닌 경우만 통과시켰다
+            //  즉 이 시점에서 accessToken은 무조건 존재한다(Public인 경우가 살짝 걸리긴 하는데 @Public()이랑 @RABC()를 동시에 다는 짓만 안하면 괜찮을듯)
+            // 3. RBACGuard에선 Role을 확인하여 조건에 맞으면 통과시킨다
+            provide: APP_GUARD,
+            useClass: RBACGuard,
         },
     ],
 })

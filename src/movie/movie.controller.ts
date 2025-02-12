@@ -22,7 +22,8 @@ import { MovieTitleValidationPipeGeneric } from './pipe/movie-title-validation.p
 import { Movie } from './entity/movie.entity';
 import { AccessTokenGuard } from 'src/auth/guard/auth.guard';
 import { Public } from 'src/auth/decorator/public.decorator';
-
+import { Role } from 'src/user/entities/user.entity';
+import { RBAC } from 'src/auth/decorator/rbac.decorator';
 /**
  * Controller: 요청 자체, query, body, param 등에 대한 것만 처리한다
  * Service: 로직을 처리한다
@@ -32,8 +33,8 @@ import { Public } from 'src/auth/decorator/public.decorator';
 export class MovieController {
     public constructor(private readonly movieService: MovieService) {}
 
-    @Public()
     @Get()
+    @Public()
     public findAll(
         @Query(
             'title',
@@ -47,6 +48,7 @@ export class MovieController {
     }
 
     @Get('array')
+    @Public()
     public findAllArrayPipe(
         @Query('id', new ParseArrayPipe({ items: Number, separator: ',' }))
         id: number[],
@@ -55,6 +57,7 @@ export class MovieController {
     }
 
     @Get(':id')
+    @Public()
     // findOne(@Param('id', ParseIntPipe) id: number) {
     public findOne(
         @Param(
@@ -80,6 +83,7 @@ export class MovieController {
     // }
 
     @Post()
+    @RBAC(Role.admin)
     // @UseGuards(AccessTokenGuard) // 이렇게 개별 설정할 수도 있다(지금은 글로벌 적용되어있어서 가드를 두번 타기 때문에 주석처리함)
     public createUsingQueryBuilder(@Body() body: CreateMovieDto): Promise<Movie> {
         return this.movieService.createUsingQueryBuilder(body);
@@ -91,6 +95,7 @@ export class MovieController {
     // }
 
     @Patch(':id')
+    @RBAC(Role.admin)
     public updateUsingQueryBuilder(
         @Param('id', ParseIntPipe) id: number,
         @Body() body: UpdateMovieDto,
@@ -99,6 +104,7 @@ export class MovieController {
     }
 
     @Delete(':id')
+    @RBAC(Role.admin)
     public remove(@Param('id', ParseIntPipe) id: number): Promise<number> {
         return this.movieService.remove(id);
     }
