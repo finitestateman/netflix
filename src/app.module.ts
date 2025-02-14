@@ -48,6 +48,7 @@ import { RBACGuard } from './auth/guard/rbac.guard';
                 database: configService.get<string>(DOTENV.DB_DATABASE),
                 entities: [Movie, MovieDetail, Director, Genre, User],
                 synchronize: true,
+                logging: true,
             }),
             inject: [ConfigService],
         }),

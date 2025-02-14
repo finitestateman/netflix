@@ -45,7 +45,7 @@ export class MovieTitleValidationPipeGeneric<
 export class MovieTitleValidationPipe implements PipeTransform<string, string> {
     private readonly defaultOptions: Required<MovieTitleValidationPipeOptions> = {
         exceptionFactory: (error: string) => error,
-        allowNull: false
+        allowNull: false,
     };
 
     public constructor(private readonly options?: MovieTitleValidationPipeOptions) {
