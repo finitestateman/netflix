@@ -12,7 +12,13 @@ export class GenreService {
         private readonly genreRepository: Repository<Genre>,
     ) {}
 
-    public create(createGenreDto: CreateGenreDto): Promise<Genre> {
+    public async create(createGenreDto: CreateGenreDto): Promise<Genre> {
+        const genre = await this.genreRepository.findOne({ where: { name: createGenreDto.name } });
+
+        if (genre) {
+            throw new NotFoundException('이미 존재하는 장르입니다!');
+        }
+
         return this.genreRepository.save(createGenreDto);
     }
 
