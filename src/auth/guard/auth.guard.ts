@@ -1,4 +1,4 @@
-import { Injectable, CanActivate, ExecutionContext, UnauthorizedException } from '@nestjs/common';
+import { Injectable, CanActivate, ExecutionContext, UnauthorizedException, HttpException } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { Payload } from '../auth.types';
 import { Request as ExpressRequest } from 'express';
@@ -25,6 +25,12 @@ export class AccessTokenGuard implements CanActivate {
         // bearerTokenMiddleware는 토큰을 파싱/검증만 하고 요청에 user 객체를 추가한다
         // guard는 실제로 user 객체를 바탕으로 인가를 할지 말지 결정한다
         const request = context.switchToHttp().getRequest<ExpressRequest & { user: Payload }>();
+        if ((request as unknown as Request & { error: Error }).error) {
+            if (isPublic) {
+                return true;
+            }
+            throw (request as unknown as Request & { error: Error }).error;
+        }
 
         if (!request.user || request.user.tokenType !== 'access') {
             return false;
