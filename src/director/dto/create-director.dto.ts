@@ -1,4 +1,3 @@
-import { Transform } from 'class-transformer';
 import { IsDateString, IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateDirectorDto {
@@ -7,7 +6,7 @@ export class CreateDirectorDto {
     public name: string;
 
     @IsNotEmpty()
-    @Transform(({ value }: { value: string }): Date => new Date(value))
+    @IsDateString()
     public dob: Date;
 
     @IsNotEmpty()

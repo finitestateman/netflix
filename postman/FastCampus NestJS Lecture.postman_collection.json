@@ -10,96 +10,17 @@
 			"name": "movie",
 			"item": [
 				{
-					"name": "movie",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "",
-								"value": "",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{baseurl}}/movie",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"movie"
-							],
-							"query": [
-								{
-									"key": "id[]",
-									"value": "1",
-									"disabled": true
-								},
-								{
-									"key": "title",
-									"value": null,
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "movie/:id",
+					"name": "/movie",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseurl}}movie/:id",
+							"raw": "http://localhost:3000/movie",
+							"protocol": "http",
 							"host": [
-								"{{baseurl}}movie"
+								"localhost"
 							],
-							"path": [
-								":id"
-							],
-							"query": [
-								{
-									"key": "id",
-									"value": "4",
-									"disabled": true
-								}
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": ""
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "movie",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInJvbGUiOjIsInRva2VuVHlwZSI6ImFjY2VzcyIsImlhdCI6MTczOTM2Mzk4OSwiZXhwIjoxNzM5MzY0MTY5fQ.gKyibU3iwM4JApCeL3wFk7fx48W2tG85MbLti3AALUA",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"title\": \"Snow Piercer14\",\n    \"description\": \"222Palindrome\",\n    // \"directorId\": 1,\n    \"genreIds\": [3]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/movie",
-							"host": [
-								"{{baseurl}}"
-							],
+							"port": "3000",
 							"path": [
 								"movie"
 							]
@@ -108,24 +29,17 @@
 					"response": []
 				},
 				{
-					"name": "movie/:id",
+					"name": "/movie/:id",
 					"request": {
-						"method": "PATCH",
+						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"title\": \"배트맨 대 슈퍼맨 대 원더우먼\",\n    \"_description\": \"Martha\"\n    // \"directorId\": 12\n    // \"genreIds\": [3,4]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "{{baseurl}}/movie/:id",
+							"raw": "http://localhost:3000/movie/:id",
+							"protocol": "http",
 							"host": [
-								"{{baseurl}}"
+								"localhost"
 							],
+							"port": "3000",
 							"path": [
 								"movie",
 								":id"
@@ -141,31 +55,70 @@
 					"response": []
 				},
 				{
-					"name": "movie/:id",
+					"name": "movie",
 					"request": {
-						"method": "DELETE",
+						"method": "POST",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "{{baseurl}}movie/:id",
+							"raw": "http://localhost:3000/movie",
+							"protocol": "http",
 							"host": [
-								"{{baseurl}}movie"
+								"localhost"
 							],
+							"port": "3000",
 							"path": [
+								"movie"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/movie/:id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/movie/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"movie",
 								":id"
 							],
 							"variable": [
 								{
 									"key": "id",
-									"value": "6"
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/movie/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/movie/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"movie",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
 								}
 							]
 						}
@@ -183,10 +136,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseurl}}/director",
+							"raw": "http://localhost:3000/director",
+							"protocol": "http",
 							"host": [
-								"{{baseurl}}"
+								"localhost"
 							],
+							"port": "3000",
 							"path": [
 								"director"
 							]
@@ -200,32 +155,27 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseurl}}/director/:id",
+							"raw": "http://localhost:3000/director",
+							"protocol": "http",
 							"host": [
-								"{{baseurl}}"
+								"localhost"
 							],
+							"port": "3000",
 							"path": [
-								"director",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "10"
-								}
+								"director"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "director",
+					"name": "director/:id Copy",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Bong\",\n    \"dob\": \"1973-05-24T00:00:00.000Z\",\n    \"nationality\": \"Okja\"\n}",
+							"raw": "{\n    \"name\": \"Christopher Nolan\",\n    \"dob\": \"1970-07-30T00:00:00.000Z\",\n    \"nationality\": \"South Korea\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -233,10 +183,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseurl}}/director",
+							"raw": "http://localhost:3000/director",
+							"protocol": "http",
 							"host": [
-								"{{baseurl}}"
+								"localhost"
 							],
+							"port": "3000",
 							"path": [
 								"director"
 							]
@@ -259,10 +211,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseurl}}/director/:id",
+							"raw": "http://localhost:3000/director/:id",
+							"protocol": "http",
 							"host": [
-								"{{baseurl}}"
+								"localhost"
 							],
+							"port": "3000",
 							"path": [
 								"director",
 								":id"
@@ -270,7 +224,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": ""
+									"value": "102"
 								}
 							]
 						}
@@ -278,7 +232,7 @@
 					"response": []
 				},
 				{
-					"name": "director/:id",
+					"name": "director/:id Copy 3",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -292,10 +246,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseurl}}/director/:id",
+							"raw": "http://localhost:3000/director/:id",
+							"protocol": "http",
 							"host": [
-								"{{baseurl}}"
+								"localhost"
 							],
+							"port": "3000",
 							"path": [
 								"director",
 								":id"
@@ -311,711 +267,6 @@
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "genre",
-			"item": [
-				{
-					"name": "genre",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseurl}}/genre",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"genre"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "genre/:id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseurl}}/genre/:id",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"genre",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": ""
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "genre",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"Sci-Fi\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/genre",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"genre"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "genre/:id",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/genre/:id",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"genre",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": ""
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "genre/:id",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/genre/:id",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"genre",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": ""
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "user",
-			"item": [
-				{
-					"name": "user",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseurl}}/user",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"user"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "user/:id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseurl}}user/:id",
-							"host": [
-								"{{baseurl}}user"
-							],
-							"path": [
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": ""
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "user/:id",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "{{baseurl}}/user/:id",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"user",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": ""
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "user/:id",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"url": {
-							"raw": "{{baseurl}}/user/:id",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"user",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": ""
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "user/:id",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{baseurl}}/user/:id",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"user",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "auth",
-			"item": [
-				{
-					"name": "register",
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "username",
-									"value": "paidUser",
-									"type": "string"
-								},
-								{
-									"key": "password",
-									"value": "123123",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "authorization",
-								"value": "Bearer dGVzdEBjb2RlZmFjdG9yeS5haToxMjMxMjM=",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"url": {
-							"raw": "{{baseurl}}/auth/register",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"auth",
-								"register"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 201\", function () {",
-									"    pm.response.to.have.status(201);",
-									"    const { accessToken, refreshToken } = pm.response.json();",
-									"    pm.environment.set('accessToken', accessToken);",
-									"    pm.environment.set('refreshToken', refreshToken);",
-									"});"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "username",
-									"value": "test",
-									"type": "string"
-								},
-								{
-									"key": "password",
-									"value": "123123",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "authorization",
-								"value": "Bearer dGVzdEBjb2RlZmFjdG9yeS5haToxMjMxMjM=",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"url": {
-							"raw": "{{baseurl}}/auth/login",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"auth",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "login/passport",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"test\",\n    \"password\": \"123123\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/auth/login/passport",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"auth",
-								"login",
-								"passport"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "private",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseurl}}/auth/private",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"auth",
-								"private"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "token/access",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "{{baseurl}}/auth/token/access",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"auth",
-								"token",
-								"access"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "seed",
-			"item": [
-				{
-					"name": "login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 201\", function () {",
-									"    pm.response.to.have.status(201);",
-									"    const { accessToken, refreshToken } = pm.response.json();",
-									"    pm.environment.set('accessToken', accessToken);",
-									"    pm.environment.set('refreshToken', refreshToken);",
-									"});"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "username",
-									"value": "admin",
-									"type": "string"
-								},
-								{
-									"key": "password",
-									"value": "123123",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "authorization",
-								"value": "Bearer dGVzdEBjb2RlZmFjdG9yeS5haToxMjMxMjM=",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"url": {
-							"raw": "{{baseurl}}/auth/login",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"auth",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "create director",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 201\", function () {",
-									"    pm.response.to.have.status(201);",
-									"",
-									"    const body = pm.response.json();",
-									"",
-									"    let directors = pm.environment.get('directorIds');",
-									"",
-									"    if (!directors) {",
-									"        directors = body.id;",
-									"    } else {",
-									"        directors = directors + ',' + body.id;",
-									"    }",
-									"",
-									"    pm.environment.set('directorIds', directors);",
-									"});"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"{{$randomFullName}}\",\n    \"dob\": \"{{$randomDatePast}}\",\n    \"nationality\": \"{{$randomCountry}}\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/director",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"director"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "create genre",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 201\", function () {",
-									"    pm.response.to.have.status(201);",
-									"",
-									"    const body = pm.response.json();",
-									"",
-									"    let genres = pm.environment.get('genreIds');",
-									"",
-									"    if (!genres) {",
-									"        genres = body.id;",
-									"    } else {",
-									"        genres = genres + ',' + body.id;",
-									"    }",
-									"",
-									"    pm.environment.set('genreIds', genres);",
-									"});"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"{{$randomNoun}}\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/genre",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"genre"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "create movie",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"const _ = require('lodash');",
-									"",
-									"const directorIds = pm.environment.get('directorIds').split(',');",
-									"",
-									"const randomDirectorId = _.sample(directorIds);",
-									"",
-									"pm.environment.set('tempDirectorId', randomDirectorId);",
-									"",
-									"const genreIds = pm.environment.get('genreIds').split(',');",
-									"",
-									"const pickedGenreIds = [];",
-									"",
-									"let failCount = 0;",
-									"while(pickedGenreIds.length < 3 && failCount < 20) {",
-									"    const randomGenreId = _.sample(genreIds);",
-									"",
-									"    if (pickedGenreIds.includes(randomGenreId)) {",
-									"        failCount++;",
-									"        continue;",
-									"    }",
-									"",
-									"    pickedGenreIds.push(randomGenreId);",
-									"}",
-									"",
-									"pm.environment.set('tempGenreIds', pickedGenreIds)"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInJvbGUiOjIsInRva2VuVHlwZSI6ImFjY2VzcyIsImlhdCI6MTczOTM2Mzk4OSwiZXhwIjoxNzM5MzY0MTY5fQ.gKyibU3iwM4JApCeL3wFk7fx48W2tG85MbLti3AALUA",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"title\": \"{{$randomBsAdjective}} {{$randomBsNoun}} {{$randomInt}}: {{$randomBsBuzz}}\",\n    \"description\": \"{{$randomLoremSentence}}\",\n    \"directorId\": {{tempDirectorId}},\n    \"genreIds\": [{{tempGenreIds}}]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/movie",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"movie"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		}
-	],
-	"auth": {
-		"type": "bearer",
-		"bearer": [
-			{
-				"key": "token",
-				"value": "{{accessToken}}",
-				"type": "string"
-			}
-		]
-	},
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"type": "text/javascript",
-				"packages": {},
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"type": "text/javascript",
-				"packages": {},
-				"exec": [
-					""
-				]
-			}
 		}
 	]
 }

@@ -1,22 +1,8 @@
 import { ArrayNotEmpty, IsArray, IsNotEmpty, IsNumber, IsString } from 'class-validator';
-import { Transform } from 'class-transformer';
 
 export class CreateMovieDto {
     @IsNotEmpty()
     @IsString()
-    @Transform(({ value }): string => {
-        if (typeof value === 'string') {
-            const capitalizeWords = (str: string): string =>
-                str
-                    .split(' ')
-                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                    .join(' ');
-            const shouldAddThe = Math.random() < 0.3;
-            const capitalizedValue = capitalizeWords(value);
-            return shouldAddThe ? `The ${capitalizedValue}` : capitalizedValue;
-        }
-        return value;
-    })
     public title: string;
 
     // ! 강의 상에서는 변수명이 detail
