@@ -14,6 +14,7 @@ const MovieTitleArrayNotAllowedException = new BadRequestException('배열은 �
 
 @Injectable() // service처럼 provider로 관리된다`
 export class MovieTitleValidationPipeGeneric<
+    // @Query() 안에 프로퍼티를 넣지 않으면 string | string[] | undefined이 아니라 @Body()처럼 객체가 된다
     // NOTE: 여기서는 사실 제네릭으로 안 하는 게 맞지만 공부 목적이니 제네릭도 가능함을 보여주기 위해 제네릭을 사용한다(즉, 호출 시 사용자가 제네릭을 지정 가능하다)
     T = string | string[] | undefined, // 사용자가 여러 값을 보낼 수 있기 때문에 배열도 포함, @Body()를 받을 경우에는 아마 추가적인 타입에 대한 처리를 해야한다
     R = string,

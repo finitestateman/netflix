@@ -24,6 +24,7 @@ import { AccessTokenGuard } from 'src/auth/guard/auth.guard';
 import { Public } from 'src/auth/decorator/public.decorator';
 import { Role } from 'src/user/entities/user.entity';
 import { RBAC } from 'src/auth/decorator/rbac.decorator';
+import { GetMoviesDto } from './dto/get-movies.dto';
 /**
  * Controller: 요청 자체, query, body, param 등에 대한 것만 처리한다
  * Service: 로직을 처리한다
@@ -36,6 +37,9 @@ export class MovieController {
     @Get()
     @Public()
     public findAll(
+        // MovieTitleValidationPipe때문에 @Query()를 둘로 분리한다
+        // ! Omit<GetMoviesDto, 'title'>으로 하니까 기본값이 적용이 안 된다
+        @Query() dto: GetMoviesDto,
         @Query(
             'title',
             new MovieTitleValidationPipeGeneric<string | string[] | undefined, string>({
@@ -43,8 +47,8 @@ export class MovieController {
             }),
         )
         title?: string,
-    ): Promise<[Movie[], number]> {
-        return this.movieService.findAll(title);
+    ): Promise<[Movie[], number] | [number, Movie[]]> {
+        return this.movieService.findAllUsingQueryBuilder({ ...dto, title }); // { title, ...dto }로 하면 title이 덮어쓰기돼서 문제가 될 수 있다
     }
 
     @Get('array')

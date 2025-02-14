@@ -17,6 +17,8 @@ import {
 import { MovieDetail } from './entity/movie-detail.entity';
 import { Director } from 'src/director/entity/director.entity';
 import { Genre } from 'src/genre/entities/genre.entity';
+import { GetMoviesDto } from './dto/get-movies.dto';
+import { CommonService } from 'src/common/common.service';
 
 // export 해줘야 Controller에서 쓸 수 있다
 
@@ -38,6 +40,7 @@ export class MovieService {
         @InjectRepository(Genre)
         private readonly genreRepository: Repository<Genre>,
         private readonly dataSource: DataSource,
+        private readonly commonService: CommonService,
     ) {}
 
     public async findAll(title?: string): Promise<[Movie[], number]> {
@@ -174,20 +177,27 @@ export class MovieService {
         }
     }
 
-    public async findAllUsingQueryBuilder(title?: string): Promise<[Movie[], number]> {
+    public async findAllUsingQueryBuilder(
+        { page, take, countFirst, title }: GetMoviesDto,
+        // title?: string,
+    ): Promise<[Movie[], number] | [number, Movie[]]> {
         const qb = this.movieRepository
             .createQueryBuilder('movie')
             .leftJoinAndSelect('movie.director', 'director')
-            .leftJoinAndSelect('movie.genres', 'genres')
-            .leftJoinAndSelect('movie.detail', 'detail');
+            .leftJoinAndSelect('movie.genres', 'genres');
 
         if (title) {
             qb.where('movie.title LIKE :title', { title: `%${title}%` });
         }
 
-        const [movies, count] = await qb.getManyAndCount();
+        // page와 take는 기본값이 있어서 조건문이 무의미하다
+        if (page && take) {
+            this.commonService.applyPagePaginationParamsToQueryBuilder(qb, { page, take });
+        }
 
-        return [movies, count];
+        const [movies, count] = await qb.getManyAndCount();
+        // count는 take한 값이 아니라 페이지가 없다고 가정했을 때의 값이다
+        return countFirst ? [count, movies] : [movies, count];
     }
 
     public async findOneUsingQueryBuilder(id: number): Promise<Movie> {
