@@ -57,10 +57,10 @@ export class AuthController {
     public async rotateAccessToken(
         @Request() req: ExpressRequest & { user: Payload },
     ): Promise<Pick<AuthTokens, 'accessToken'>> {
-        const { sub, role, tokenType }: Payload = req.user;
+        const { sub, role }: Payload = req.user;
 
         return {
-            accessToken: await this.authService.issueToken({ sub, role, tokenType }),
+            accessToken: await this.authService.issueToken({ sub, role, tokenType: 'access' }),
         };
     }
 }

@@ -1013,7 +1013,30 @@
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
-					""
+					"pm.test(\"Status code is 401\", function () {",
+					"    pm.response.to.have.status(401);",
+					"",
+					"    pm.sendRequest({",
+					"        url: `${pm.environment.get('baseurl')}/auth/token/access`,",
+					"        method: \"POST\",",
+					"        header: {",
+					"            \"Content-Type\": \"application/json\",",
+					"            \"Authorization\": `Bearer ${pm.environment.get(\"refreshToken\")}`  // 🔹 Pass refreshToken in Header",
+					"        }",
+					"    }, function (err, res) {",
+					"        if (err) {",
+					"            console.error(\"🔴 Access token refresh failed:\", err);",
+					"        } else {",
+					"            const { accessToken } = res.json();",
+					"            if (accessToken) {",
+					"                pm.environment.set(\"accessToken\", accessToken);",
+					"                console.log(\"✅ New Access Token Set:\", accessToken);",
+					"            } else {",
+					"                console.warn(\"⚠️ No accessToken returned in response.\");",
+					"            }",
+					"        }",
+					"    });",
+					"});"
 				]
 			}
 		}
