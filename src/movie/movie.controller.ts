@@ -25,6 +25,7 @@ import { Public } from 'src/auth/decorator/public.decorator';
 import { Role } from 'src/user/entities/user.entity';
 import { RBAC } from 'src/auth/decorator/rbac.decorator';
 import { GetMoviesDto } from './dto/get-movies.dto';
+import { CursorPaginationDto } from 'src/common/dto/cursor-pagination.dto';
 /**
  * Controller: 요청 자체, query, body, param 등에 대한 것만 처리한다
  * Service: 로직을 처리한다

@@ -178,7 +178,7 @@ export class MovieService {
     }
 
     public async findAllUsingQueryBuilder(
-        { page, take, countFirst, title }: GetMoviesDto,
+        { id, order, take, countFirst, title }: GetMoviesDto,
         // title?: string,
     ): Promise<[Movie[], number] | [number, Movie[]]> {
         const qb = this.movieRepository
@@ -190,10 +190,8 @@ export class MovieService {
             qb.where('movie.title LIKE :title', { title: `%${title}%` });
         }
 
-        // page와 take는 기본값이 있어서 조건문이 무의미하다
-        if (page && take) {
-            this.commonService.applyPagePaginationParamsToQueryBuilder(qb, { page, take });
-        }
+        // this.commonService.applyPagePaginationParamsToQueryBuilder(qb, { page, take });
+        this.commonService.applyCursorPaginationParamsToQueryBuilder(qb, { id, order, take });
 
         const [movies, count] = await qb.getManyAndCount();
         // count는 take한 값이 아니라 페이지가 없다고 가정했을 때의 값이다
