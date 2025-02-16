@@ -1,18 +1,20 @@
-import { IsIn, IsInt, IsNumber, IsOptional, IsPositive } from 'class-validator';
-
-const ORDER = ['ASC', 'DESC'] as const;
-type Order = (typeof ORDER)[number];
+import { IsArray, IsInt, IsOptional, IsPositive, IsString } from 'class-validator';
 
 export class CursorPaginationDto {
-    @IsNumber()
-    @IsPositive()
+    @IsInt()
     @IsOptional()
-    public id?: number;
+    // id_52, likeCount_20
+    public cursor?: string;
 
-    @IsIn(ORDER)
+    // http 요청 시에 이름을 orders[]로 주면 orders 값이 하나이더라도 배열로 전달할 수 있다
+    @IsArray()
+    @IsString({ each: true })
     @IsOptional()
-    // order? 로 안 하는 이유는 기본값이 있기 때문에(엄밀히는 order?로 하면 안 된다)
-    public order: Order = 'DESC';
+    // id_ASC, id_DESC
+    // ['id_DESC', 'likeCount_ASC']
+    // 배열이어서 복수형으로 변경
+    // Optional Property로 안 하는 이유는 기본값이 있기 때문에(엄밀히는 Optional Property로 하면 안 된다)
+    public orders: string[] = [];
 
     @IsInt()
     @IsPositive()
