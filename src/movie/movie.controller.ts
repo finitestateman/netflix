@@ -26,6 +26,7 @@ import { Role } from 'src/user/entities/user.entity';
 import { RBAC } from 'src/auth/decorator/rbac.decorator';
 import { GetMoviesDto } from './dto/get-movies.dto';
 import { CursorPaginationDto } from 'src/common/dto/cursor-pagination.dto';
+import { CacheInterceptor } from 'src/common/interceptor/cache.interceptor';
 /**
  * Controller: 요청 자체, query, body, param 등에 대한 것만 처리한다
  * Service: 로직을 처리한다
@@ -37,6 +38,7 @@ export class MovieController {
 
     @Get()
     @Public()
+    // @UseInterceptors(CacheInterceptor)
     public findAll(
         // MovieTitleValidationPipe때문에 @Query()를 둘로 분리한다
         // ! Omit<GetMoviesDto, 'title'>으로 하니까 기본값이 적용이 안 된다
