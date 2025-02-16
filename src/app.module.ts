@@ -16,8 +16,9 @@ import { DOTENV } from './common/const/env.const';
 import { DatabaseType } from 'typeorm';
 import { BearerTokenMiddleware } from './auth/middleware/bearer-token.middleware';
 import { AccessTokenGuard } from './auth/guard/auth.guard';
-import { APP_GUARD } from '@nestjs/core';
+import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { RBACGuard } from './auth/guard/rbac.guard';
+import { ResponseTimeInterceptor } from './common/interceptor/response-time.interceptor';
 
 @Module({
     // 또다른 module을 import할 때
@@ -48,7 +49,7 @@ import { RBACGuard } from './auth/guard/rbac.guard';
                 database: configService.get<string>(DOTENV.DB_DATABASE),
                 entities: [Movie, MovieDetail, Director, Genre, User],
                 synchronize: true,
-                logging: true,
+                // logging: true,
             }),
             inject: [ConfigService],
         }),
@@ -78,6 +79,10 @@ import { RBACGuard } from './auth/guard/rbac.guard';
             // 3. RBACGuard에선 Role을 확인하여 조건에 맞으면 통과시킨다
             provide: APP_GUARD,
             useClass: RBACGuard,
+        },
+        {
+            provide: APP_INTERCEPTOR,
+            useClass: ResponseTimeInterceptor,
         },
     ],
 })
