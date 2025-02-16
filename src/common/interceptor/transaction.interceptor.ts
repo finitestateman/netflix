@@ -24,7 +24,7 @@ export class TransactionInterceptor implements NestInterceptor {
                 from(
                     (async (): Promise<void> => {
                         await qr.commitTransaction();
-                        // await qr.release();
+                        await qr.release();
                     })(),
                 ),
             ),
@@ -32,18 +32,12 @@ export class TransactionInterceptor implements NestInterceptor {
                 from(
                     (async (): Promise<void> => {
                         await qr.rollbackTransaction();
-                        // await qr.release();
+                        await qr.release();
                         throw e;
                     })(),
                 ),
             ),
-            finalize(() =>
-                from(
-                    (async (): Promise<void> => {
-                        await qr.release();
-                    })(),
-                ),
-            ),
+            // finalize?
         );
     }
 }
