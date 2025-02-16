@@ -14,6 +14,7 @@ import {
     BadRequestException,
     ParseArrayPipe,
     UseGuards,
+    Request,
 } from '@nestjs/common';
 import { MovieService } from './movie.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
@@ -27,6 +28,9 @@ import { RBAC } from 'src/auth/decorator/rbac.decorator';
 import { GetMoviesDto } from './dto/get-movies.dto';
 import { CursorPaginationDto } from 'src/common/dto/cursor-pagination.dto';
 import { CacheInterceptor } from 'src/common/interceptor/cache.interceptor';
+import { QueryRunner } from 'typeorm';
+import { Request as ExpressRequest } from 'express';
+import { TransactionInterceptor } from 'src/common/interceptor/transaction.interceptor';
 /**
  * Controller: 요청 자체, query, body, param 등에 대한 것만 처리한다
  * Service: 로직을 처리한다
@@ -92,8 +96,12 @@ export class MovieController {
     @Post()
     @RBAC(Role.admin)
     // @UseGuards(AccessTokenGuard) // 이렇게 개별 설정할 수도 있다(지금은 글로벌 적용되어있어서 가드를 두번 타기 때문에 주석처리함)
-    public createUsingQueryBuilder(@Body() body: CreateMovieDto): Promise<Movie> {
-        return this.movieService.createUsingQueryBuilder(body);
+    @UseInterceptors(TransactionInterceptor)
+    public createUsingQueryBuilder(
+        @Body() body: CreateMovieDto,
+        @Request() req: ExpressRequest & { queryRunner: QueryRunner },
+    ): Promise<Movie> {
+        return this.movieService.createUsingQueryBuilder(body, req.queryRunner);
     }
 
     // @Patch(':id')
