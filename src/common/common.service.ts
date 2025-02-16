@@ -15,10 +15,10 @@ export class CommonService {
         qb.skip((page - 1) * take).take(take);
     }
 
-    public applyCursorPaginationParamsToQueryBuilder<T>(
+    public async applyCursorPaginationParamsToQueryBuilder<T>(
         qb: SelectQueryBuilder<T>,
         { cursor, orders, take }: CursorPaginationDto,
-    ): void {
+    ): Promise<{ qb: SelectQueryBuilder<T>; nextCursor: string | null }> {
         if (cursor) {
             throw new NotImplementedException('Not implemented');
         }
@@ -41,5 +41,35 @@ export class CommonService {
         });
 
         qb.take(take);
+
+        const results: T[] = await qb.getMany();
+        const nextCursor: string | null = this.generateNextCursor(results, orders);
+
+        return { qb, nextCursor };
+    }
+
+    /**
+     * Returns: base64 encoded cursor string
+     * {
+     *     values: { id: 27 },
+     *     orders: ['id_DESC']
+     * }
+     */
+    public generateNextCursor<T>(results: T[], orders: string[]): string | null {
+        if (!results.length) return null;
+
+        // 타입을 정의하긴 했지만 정작 런타임에 잡아내진 못한다
+        // T 객체의 모든 프로퍼티(keyof T)를 키로 하고, 해당 프로퍼티의 타입(T[keyof T])을 값으로 가지는 객체 타입(Record<K, V>)을 정의하고 프로퍼티를 선택적(Partial)으로 한다
+        const values: Partial<Record<keyof T, T[keyof T]>> = {};
+
+        orders.forEach((order) => {
+            const [column] = order.split('_') as [keyof T, string];
+            values[column] = results.at(-1)[column];
+        });
+
+        const cursorObj = { values, orders };
+
+        const nextCursorString = Buffer.from(JSON.stringify(cursorObj)).toString('base64');
+        return nextCursorString;
     }
 }

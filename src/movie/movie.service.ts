@@ -180,7 +180,7 @@ export class MovieService {
     public async findAllUsingQueryBuilder(
         { cursor, orders, take, countFirst, title }: GetMoviesDto,
         // title?: string,
-    ): Promise<[Movie[], number] | [number, Movie[]]> {
+    ): Promise<{ count: number; movies: Movie[]; nextCursor: string }> {
         const qb = this.movieRepository
             .createQueryBuilder('movie')
             .leftJoinAndSelect('movie.director', 'director')
@@ -191,11 +191,16 @@ export class MovieService {
         }
 
         // this.commonService.applyPagePaginationParamsToQueryBuilder(qb, { page, take });
-        this.commonService.applyCursorPaginationParamsToQueryBuilder(qb, { cursor, orders, take });
+        const { nextCursor } = await this.commonService.applyCursorPaginationParamsToQueryBuilder<Movie>(qb, {
+            cursor,
+            orders,
+            take,
+        });
 
         const [movies, count] = await qb.getManyAndCount();
+
         // count는 take한 값이 아니라 페이지가 없다고 가정했을 때의 값이다
-        return countFirst ? [count, movies] : [movies, count];
+        return countFirst ? { count, nextCursor, movies } : { movies, count, nextCursor };
     }
 
     public async findOneUsingQueryBuilder(id: number): Promise<Movie> {

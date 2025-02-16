@@ -48,7 +48,7 @@ export class MovieController {
             }),
         )
         title?: string,
-    ): Promise<[Movie[], number] | [number, Movie[]]> {
+    ): Promise<{ count: number; movies: Movie[]; nextCursor: string }> {
         return this.movieService.findAllUsingQueryBuilder({ ...dto, title }); // { title, ...dto }로 하면 title이 덮어쓰기돼서 문제가 될 수 있다
     }
 
