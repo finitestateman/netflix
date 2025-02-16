@@ -36,6 +36,11 @@ export class Movie extends BaseTable {
     @JoinTable()
     public genres: Genre[];
 
+    @Column({
+        default: 0,
+    })
+    public likeCount: number;
+
     @OneToOne(() => MovieDetail, (movieDetail) => movieDetail.id, {
         cascade: true, // movie에 대한 작업이 detail에 영향을 미치게 한다
         nullable: false,
