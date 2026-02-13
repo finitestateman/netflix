@@ -7,6 +7,7 @@ import { ConfigService } from '@nestjs/config';
 import type { AuthTokens, JwtClaim, Payload } from './auth.types';
 import { JsonWebTokenError, JwtService, TokenExpiredError } from '@nestjs/jwt';
 import { DOTENV } from 'src/common/const/env.const';
+import type { StringValue } from 'ms';
 
 @Injectable()
 export class AuthService {
@@ -118,11 +119,9 @@ export class AuthService {
         const accessTokenSecret = this.configService.get<string>(DOTENV.ACCESS_TOKEN_SECRET);
         const refreshTokenSecret = this.configService.get<string>(DOTENV.REFRESH_TOKEN_SECRET);
 
-        const { secret, expiresIn } =
-            // https://github.com/vercel/ms
-            payload.tokenType === 'access'
-                ? { secret: accessTokenSecret, expiresIn: '3m' }
-                : { secret: refreshTokenSecret, expiresIn: '1d' };
+        const secret = payload.tokenType === 'access' ? accessTokenSecret : refreshTokenSecret;
+        // https://github.com/vercel/ms
+        const expiresIn: StringValue = payload.tokenType === 'access' ? '3m' : '1d';
 
         const token = await this.jwtService.signAsync(payload, { secret, expiresIn });
         return token;
